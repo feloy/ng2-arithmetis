@@ -6,6 +6,7 @@ import { DistributorService } from './distributor.service';
 import { Clearable, CalculatorService } from './calculator.service';
 import { AudioService } from './audio.service';
 import { ChronoService } from './chrono.service';
+import { GpgsService } from './gpgs.service';
 
 export interface SquarePosition {
   place: number;
@@ -16,8 +17,6 @@ export interface SquareContent {
   tile: Tile;
   position: SquarePosition;
 }
-
-declare var gapi;
 
 @Injectable()
 export class GameService {
@@ -44,7 +43,7 @@ export class GameService {
 
   constructor(private distributor: DistributorService,
     private calculator: CalculatorService, private audio: AudioService,
-    private chrono: ChronoService) { }
+    private chrono: ChronoService, private gpgs: GpgsService) { }
 
   /** restart a new game  */
   public restart() {
@@ -75,12 +74,14 @@ export class GameService {
     this.distributor.setLevel(this.level);
     this.linesLeft = this.level;
 
-    this.chrono.start();
 
     if (this.level > 1) {
-      this.sendLeaderboardLevel();
       this.audio.playLevel(this.level);
+      this.gpgs.sendLeaderboardLevel(this.level - 1);
+      this.gpgs.sendLeaderboardChrono(this.level - 1, this.chrono.get());
     }
+
+    this.chrono.start();
   }
 
   /** subroutine to place tile in the grid and tell to all concerned */
@@ -173,17 +174,4 @@ export class GameService {
     }
   }
 
-  private sendLeaderboardLevel() {
-    gapi.client.load('games', 'v1', (response1) => {
-      var request = gapi.client.games.scores.submit(
-        {
-          leaderboardId: 'CgkIg-L2stUXEAIQHw',
-          score: this.level
-        }
-      );
-      request.execute(function (response) {
-        console.log(response);
-      });
-    });
-  }
 }
