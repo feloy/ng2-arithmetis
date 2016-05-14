@@ -26,7 +26,7 @@ export class GameService {
   private grid: Array<Tile> = new Array<Tile>(GameService.SIZE * GameService.SIZE);
   private rack: Array<Tile> = new Array<Tile>(GameService.SIZE);
 
-  private started: boolean = false;
+  public started: boolean = false;
   private level: number;
   public linesLeft: number;
 

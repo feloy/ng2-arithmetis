@@ -1,0 +1,6 @@
+{
+  "gobtn": "go!",
+  "level_n": "Level {{d}}",
+  "n_lines_left": "{{count}} line left",
+  "n_lines_left_plural": "{{count}} lines left"
+}

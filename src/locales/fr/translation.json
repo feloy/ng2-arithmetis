@@ -1,0 +1,6 @@
+{
+  "gobtn": "GO",
+  "level_n": "Niveau {{d}}",
+  "n_lines_left": "{{count}} ligne restante",
+  "n_lines_left_plural": "{{count}} lignes restantes"
+}

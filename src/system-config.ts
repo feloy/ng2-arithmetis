@@ -3,10 +3,16 @@
  **********************************************************************************************/
 /** Map relative paths to URLs. */
 const map: any = {
+  'ng2-i18next': 'vendor/ng2-i18next',
 };
 
 /** User packages configuration. */
 const packages: any = {
+  'vendor/ng2-i18next': {
+    format: 'cjs',
+    defaultExtension: 'js'
+  },
+
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////

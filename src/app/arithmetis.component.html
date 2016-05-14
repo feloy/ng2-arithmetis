@@ -1,9 +1,9 @@
 <div class="infos">
   <div class="scores">
-    <div class="level">Level {{game.level}}</div>
-    <div class="linesleft">{{game.linesLeft}} lines left</div>
+    <div class="level" *ngIf="game.started">{{i18n.t('level_n', {d: game.level})}}</div>
+    <div class="linesleft" *ngIf="game.started">{{i18n.t('n_lines_left', {count: game.linesLeft})}}</div>
   </div>
-  <div class="gobtn"><button (click)="go()">go!</button></div>
+  <div class="gobtn"><button (click)="go()" i18n="gobtn"></button></div>
 </div>
 <div class="grid">
   <app-square *ngFor="let none of loop25; let i=index" [place]="getPlaceGrid()" [index]="i"></app-square>
