@@ -29,8 +29,10 @@ export class GameService {
   private rack: Array<Tile> = new Array<Tile>(GameService.SIZE);
 
   public started: boolean = false;
-  private level: number;
   public linesLeft: number;
+  public myBestAtLevel = null;
+
+  private level: number;
   private beepDone = false;
 
   private changeSource = new Subject<SquareContent>();
@@ -73,7 +75,16 @@ export class GameService {
     this.level = level;
     this.distributor.setLevel(this.level);
     this.linesLeft = this.level;
-
+    this.gpgs.getMyBestAtLevel(this.level, score => {
+//      console.log(score.items[0].scoreString);
+      if (typeof score.items != 'undefined') {
+        console.log('get score');
+        this.myBestAtLevel = score.items[0].scoreString;
+      } else {
+        console.log('null score');
+        this.myBestAtLevel = null;
+      }
+    });
 
     if (this.level > 1) {
       this.audio.playLevel(this.level);

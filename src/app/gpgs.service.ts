@@ -90,4 +90,19 @@ export class GpgsService {
     });
   }
 
+  public getMyBestAtLevel(level: number, callback: (score) => void) {
+    gapi.client.load('games', 'v1', (response1) => {
+      var request = gapi.client.games.scores.get(
+        {
+          leaderboardId: GpgsService.levels[level - 1],
+          playerId: this.user.getId(),
+          timeSpan: 'ALL_TIME'
+        }
+      );
+      request.execute(function (response) {
+        console.log(response);
+        callback(response);
+      });
+    });
+  }
 }
