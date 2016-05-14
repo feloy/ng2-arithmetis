@@ -36,6 +36,6 @@ export class SquareComponent implements OnInit {
   }
 
   public onclick() {
-    this.game.squareSelected(this.place, this.index);
+    this.game.squareSelected(this.place, this.index, this.tile);
   }
 }

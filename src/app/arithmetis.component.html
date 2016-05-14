@@ -1,17 +1,9 @@
 <div class="grid">
-  <app-square></app-square><app-square></app-square><app-square></app-square><app-square></app-square><app-square></app-square>
-  <app-square></app-square><app-square></app-square><app-square></app-square><app-square></app-square><app-square></app-square>
-  <app-square></app-square><app-square></app-square><app-square></app-square><app-square></app-square><app-square></app-square>
-  <app-square></app-square><app-square></app-square><app-square></app-square><app-square></app-square><app-square></app-square>
-  <app-square></app-square><app-square></app-square><app-square></app-square><app-square></app-square><app-square></app-square>
+  <app-square *ngFor="let none of loop25; let i=index" [place]="getPlaceGrid()" [index]="i"></app-square>
 </div>
 
 <div class="rack">
-    <app-square [place]="getPlaceRack()" index="0"></app-square>
-    <app-square [place]="getPlaceRack()" index="1"></app-square>
-    <app-square [place]="getPlaceRack()" index="2"></app-square>
-    <app-square [place]="getPlaceRack()" index="3"></app-square>
-    <app-square [place]="getPlaceRack()" index="4"></app-square>
+  <app-square *ngFor="let none of loop5; let i=index" [place]="getPlaceRack()" [index]="i"></app-square>
 </div>
 
 <button (click)="go()">go!</button>

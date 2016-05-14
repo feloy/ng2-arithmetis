@@ -14,6 +14,9 @@ import { DistributorService } from './distributor.service';
 })
 export class ArithmetisAppComponent {
 
+  loop25 = new Array(25);
+  loop5 = new Array(5);
+
   constructor(private game: GameService) { }
 
   public getPlaceRack() {

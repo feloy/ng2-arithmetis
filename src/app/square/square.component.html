@@ -1,2 +1,2 @@
-<div *ngIf="!tile" class="square empty"></div>
+<div *ngIf="!tile" class="square empty" (click)="onclick()"></div>
 <div *ngIf="tile" class="square tiled" [ngClass]="{selected: selected}" (click)="onclick()">{{tile.face}}</div>
