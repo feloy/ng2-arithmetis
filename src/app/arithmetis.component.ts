@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 import { SquareComponent } from './square';
 import { GameService } from './game.service';
@@ -11,7 +11,8 @@ import { CalculatorService } from './calculator.service';
   templateUrl: 'arithmetis.component.html',
   styleUrls: ['arithmetis.component.css'],
   providers: [GameService, DistributorService, CalculatorService],
-  directives: [SquareComponent]
+  directives: [SquareComponent],
+  encapsulation: ViewEncapsulation.None
 })
 export class ArithmetisAppComponent {
 

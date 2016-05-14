@@ -1,18 +1,55 @@
+.infos { 
+  width: 340px;
+  margin: 40px auto 8px;  
+  display: flex;
+}
+
+.infos > .scores {
+  width: 136px;
+  text-align: center;
+  color: white;
+}
+
+.infos > .scores > .level {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.infos > .gobtn {
+  width: 68px;
+  text-align: center;
+}
+
+.infos > .gobtn > button {
+  width: 40px;
+  height: 40px; 
+  margin-top: 2px;
+}
+
 .grid {
   width: 340px;
   height: 340px;
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid red;
   padding: 5px;
-  margin-top: 20px; 
+  margin: 0 auto; 
+  background-color: white;
+  border-radius: 8px;
+  font-family: 'Roboto Mono';
 }
 
 .rack {
   width: 340px;
   height: 68px;
-  margin: 20px 0;
+  margin: 20px auto;
   display: flex;
-  border: 1px solid blue;
   padding: 5px;
+  background-color: white;
+  border-radius: 8px;
+  font-family: 'Roboto Mono';
+}
+
+body { 
+  background-color: #009688;
+  font-family: 'Roboto', sans-serif;
 }

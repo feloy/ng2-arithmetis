@@ -1,5 +1,10 @@
-Level: {{game.level}}
-Lines left: {{game.linesLeft}}
+<div class="infos">
+  <div class="scores">
+    <div class="level">Level {{game.level}}</div>
+    <div class="linesleft">{{game.linesLeft}} lines left</div>
+  </div>
+  <div class="gobtn"><button (click)="go()">go!</button></div>
+</div>
 <div class="grid">
   <app-square *ngFor="let none of loop25; let i=index" [place]="getPlaceGrid()" [index]="i"></app-square>
 </div>
@@ -8,4 +13,3 @@ Lines left: {{game.linesLeft}}
   <app-square *ngFor="let none of loop5; let i=index" [place]="getPlaceRack()" [index]="i"></app-square>
 </div>
 
-<button (click)="go()">go!</button>
