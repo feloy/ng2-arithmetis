@@ -1,5 +1,5 @@
-<div [hidden]="gpgs.connected"><div id="google-login-button"></div></div>
-<div [hidden]="!gpgs.connected">{{gpgs.profile?.getName()}} <button (click)="signout()">sign out</button></div>
+<div class="signin" [hidden]="gpgs.connected"><div id="google-login-button"></div></div>
+<div class="signout" [hidden]="!gpgs.connected">{{gpgs.profile?.getName()}} <button (click)="signout()">sign out</button></div>
 <div class="infos">
   <div class="scores">
     <div class="level" *ngIf="game.started">{{i18n.t('level_n', {d: game.level})}}</div>

@@ -1,6 +1,17 @@
+.signin {
+  width: 120px;
+  margin: 20px auto; 
+}
+
+.signout {
+  width: 340px;
+  margin: 20px auto; 
+  text-align: center;
+}
+
 .infos { 
   width: 340px;
-  margin: 40px auto 8px;  
+  margin: 20px auto 8px;  
   display: flex;
 }
 
