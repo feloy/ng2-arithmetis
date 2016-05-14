@@ -4,11 +4,16 @@ import { Subject }    from 'rxjs/Subject';
 import { Tile } from './tile';
 import { DistributorService } from './distributor.service';
 
-export interface SquareContent {
-  tile: Tile;
+export interface SquarePosition {
   place: number;
   index: number;
 }
+
+export interface SquareContent {
+  tile: Tile;
+  position: SquarePosition;
+}
+
 
 @Injectable()
 export class GameService {
@@ -25,6 +30,11 @@ export class GameService {
   private changeSource = new Subject<SquareContent>();
   change$ = this.changeSource.asObservable();
 
+  private selectRackSource = new Subject<SquarePosition>();
+  selectRack$ = this.selectRackSource.asObservable();
+
+  private selectedRack: SquarePosition = null;
+
   constructor(private distributor: DistributorService) { }
 
   public restart() {
@@ -39,13 +49,31 @@ export class GameService {
     this.setRackCell(4, this.distributor.getTile(Tile.NUMBER));
   }
 
+  /** Called from the square component when a square is selected for action */
+  public squareSelected(place: number, index: number) {
+    switch (place) {
+      case GameService.PLACE_RACK: this.setSelectedRack(place, index);
+    }
+  }
+
   private setGridCell(index: number, tile: Tile) {
     this.grid[index] = tile;
-    this.changeSource.next({ tile: tile, place: GameService.PLACE_GRID, index: index });
+    this.changeSource.next({
+      tile: tile,
+      position: { place: GameService.PLACE_GRID, index: index }
+    });
   }
 
   private setRackCell(index: number, tile: Tile) {
     this.rack[index] = tile;
-    this.changeSource.next({ tile: tile, place: GameService.PLACE_RACK, index: index });
+    this.changeSource.next({
+      tile: tile,
+      position: { place: GameService.PLACE_RACK, index: index }
+    });
+  }
+
+  private setSelectedRack(place: number, index: number) {
+    this.selectedRack = { place: place, index: index };
+    this.selectRackSource.next({ place: place, index: index });
   }
 }
