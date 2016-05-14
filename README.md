@@ -1,3 +1,19 @@
+# The Game
+
+The principle of the game is that 5 tiles are available in a rack. 3 numbers, an operator and and equal sign, ie 0 + 0 = 0
+
+There is a 5x5 grid, and you can get tiles from the rack to put in the grid, to make correct operations.
+
+The objects to implement:
+
+ - a *tile class*
+ - a *rack component* with 5 squares available
+ - a *distributor service* which will distribute tiles in the rack 
+ - a *grid component* which will contain 5x5 squares
+ - a *square component*, element of rack and grid.
+
+# First install a new project with angular-cli... 
+
 # This is your [AngularAttack](https://www.angularattack.com) 2016 Repo
 
 This repo is the start of your AngularAttack 2016 entry. It contains the simple [Angular2 starter](https://angular.io/docs/ts/latest/quickstart.html) files.
