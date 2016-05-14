@@ -38,6 +38,7 @@ export class GameService {
 
   constructor(private distributor: DistributorService) { }
 
+  /** restart a new game  */
   public restart() {
     this.changeLevel(10);
     for (let i = 0; i < this.grid.length; i++) {
@@ -60,11 +61,13 @@ export class GameService {
     }
   }
 
+  /** subroutine to change level and tell to all concerned */
   private changeLevel(level) {
     this.level = level;
     this.distributor.setLevel(this.level);
   }
 
+  /** subroutine to place tile in the grid and tell to all concerned */
   private setGridCell(index: number, tile: Tile) {
     this.grid[index] = tile;
     this.changeSource.next({
@@ -73,6 +76,7 @@ export class GameService {
     });
   }
 
+  /** subroutine to place tile in the rack and tell to all concerned */
   private setRackCell(index: number, tile: Tile) {
     this.rack[index] = tile;
     this.changeSource.next({
@@ -81,6 +85,7 @@ export class GameService {
     });
   }
 
+  /** subroutine to mark a tile in the rack selected and tell to all concerned */
   private setSelectedRack(index: number, tile: Tile) {
     if (index == null && tile == null) {
       this.selectedRack = null;
@@ -90,6 +95,7 @@ export class GameService {
     this.selectRackSource.next({ place: GameService.PLACE_RACK, index: index });
   }
 
+  /** subroutine to place the selected tile in the grid */
   private setSelectedGrid(index: number) {
     if (this.selectedRack != null && this.grid[index] == null) {
       this.setGridCell(index, this.selectedRack.tile);
