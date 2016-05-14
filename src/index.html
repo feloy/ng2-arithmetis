@@ -8,6 +8,11 @@
   <base href="/"> {{content-for 'head'}}
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="google-signin-client_id" content="813197799683-b17a23clom2raca1c6sfo7do14fbud50.apps.googleusercontent.com" />
+  <meta name="google-signin-cookiepolicy" content="single_host_origin" />
+  <meta name="google-signin-scope" content="https://www.googleapis.com/auth/games" />
+  
   <!-- Service worker support is disabled by default.
        Install the worker script and uncomment to enable.
        Only enable service workers in production.
@@ -19,15 +24,9 @@
     }
   </script>
   -->
-  <meta name="google-signin-client_id" content="813197799683-b17a23clom2raca1c6sfo7do14fbud50.apps.googleusercontent.com" />
-  <meta name="google-signin-cookiepolicy" content="single_host_origin" />
-  <meta name="google-signin-callback" content="signinCallback" />
-  <meta name="google-signin-scope" content="https://www.googleapis.com/auth/games" />
 </head>
 
 <body>
-  <div class="g-signin2" data-onsuccess="onSignIn"></div>
-
   <arithmetis-app>Loading...</arithmetis-app>
 
   <script src="vendor/es6-shim/es6-shim.js"></script>
@@ -47,15 +46,7 @@
   </script>
 
   <script src="https://apis.google.com/js/client.js"></script>
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <script> 
-  function onSignIn(googleUser) {
-  window.profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail());
-}</script>
+  <script src="https://apis.google.com/js/platform.js"></script>
 </body>
 
 </html>

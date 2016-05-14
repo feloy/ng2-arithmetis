@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, provide } from '@angular/core';
+import { Component, ViewEncapsulation, provide, AfterViewInit, NgZone } from '@angular/core';
 
 import {I18nServiceConfig, I18nService, I18nDirective} from 'ng2-i18next/ng2-i18next';
 
@@ -10,7 +10,6 @@ import { CalculatorService } from './calculator.service';
 declare var i18nextBrowserLanguageDetector: any;
 declare var i18nextXHRBackend: any;
 
-declare var profile: any;
 declare var gapi;
 
 const I18N_PROVIDERS = [
@@ -35,13 +34,39 @@ const I18N_PROVIDERS = [
   directives: [SquareComponent, I18nDirective],
   encapsulation: ViewEncapsulation.None
 })
-export class ArithmetisAppComponent {
+export class ArithmetisAppComponent implements AfterViewInit {
 
-  public profile = profile;
+  private connected: boolean;
+  private user: any;
+  private profile: any;
+
   loop25 = new Array(25);
   loop5 = new Array(5);
 
-  constructor(private game: GameService, private i18n: I18nService) { }
+  constructor(private game: GameService, private i18n: I18nService,
+    private zone: NgZone) {
+  }
+
+  ngAfterViewInit() {
+    gapi.signin2.render(
+      'google-login-button',
+      {
+        'onSuccess': (user) => {
+          console.log(user);
+          this.zone.run(() => {
+            this.connected = true;
+            this.user = user;
+            this.profile = this.user.getBasicProfile();
+          });
+        },
+        'scope': 'profile',
+        'theme': 'dark',
+        'onfailure': (err) => {
+          console.log('error:' + err);
+        }
+      });
+    console.log('afterview: gapi started'); //this is printed 
+  }
 
   public getPlaceRack() {
     return GameService.PLACE_RACK;
@@ -52,14 +77,15 @@ export class ArithmetisAppComponent {
 
   public go() {
     this.game.restart();
+  }
 
-    gapi.client.load('games', 'v1', (resp) => {
-      var request = gapi.client.games.leaderboards.list(
-        { maxResults: 5 }
-      );
-      request.execute(function (response) {
-        console.log(response);
-        // Do something interesting with the response
+  public signout() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(() => {
+      this.zone.run(() => {
+        this.connected = false;
+        this.user = null;
+        this.profile = null;
       });
     });
   }

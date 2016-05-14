@@ -1,3 +1,5 @@
+<div [hidden]="connected"><div id="google-login-button"></div></div>
+<div [hidden]="!connected">{{profile?.getName()}} <button (click)="signout()">sign out</button></div>
 <div class="infos">
   <div class="scores">
     <div class="level" *ngIf="game.started">{{i18n.t('level_n', {d: game.level})}}</div>
@@ -12,5 +14,3 @@
 <div class="rack">
   <app-square *ngFor="let none of loop5; let i=index" [place]="getPlaceRack()" [index]="i"></app-square>
 </div>
-
-{{profile?.getName()}}
