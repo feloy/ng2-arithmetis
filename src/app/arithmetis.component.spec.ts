@@ -14,9 +14,4 @@ describe('App: Arithmetis', () => {
       inject([ArithmetisAppComponent], (app: ArithmetisAppComponent) => {
     expect(app).toBeTruthy();
   }));
-
-  it('should have as title \'arithmetis works!\'',
-      inject([ArithmetisAppComponent], (app: ArithmetisAppComponent) => {
-    expect(app.title).toEqual('arithmetis works!');
-  }));
 });

@@ -1,0 +1,17 @@
+.grid {
+  width: 340px;
+  height: 340px;
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid red;
+  padding: 5px;
+}
+
+.rack {
+  width: 340px;
+  height: 68px;
+  margin-top: 20px;
+  display: flex;
+  border: 1px solid blue;
+  padding: 5px;
+}

@@ -21,6 +21,9 @@ The objects to implement:
 
  - a method getTitle(type) returns a new tile 
  
+# The square component 
+
+ Will display either nothing or a tile
 
 # This is your [AngularAttack](https://www.angularattack.com) 2016 Repo
 

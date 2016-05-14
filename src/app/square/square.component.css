@@ -1,0 +1,14 @@
+.square {
+  border: 1px solid black;  
+  width: 64px;
+  height: 64px;
+  margin: 1px;
+}
+
+.empty {
+  
+}
+
+.tiled {
+  
+}
