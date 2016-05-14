@@ -32,9 +32,11 @@ export class GameService {
     for (let i = 0; i < this.grid.length; i++) {
       this.setGridCell(i, null);
     }
-    for (let i = 0; i < this.rack.length; i++) {
-      this.setRackCell(i, this.distributor.getTile(Tile.NUMBER));
-    }
+    this.setRackCell(0, this.distributor.getTile(Tile.NUMBER));
+    this.setRackCell(1, this.distributor.getTile(Tile.OPERATOR));
+    this.setRackCell(2, this.distributor.getTile(Tile.NUMBER));
+    this.setRackCell(3, this.distributor.getTile(Tile.EQUAL));
+    this.setRackCell(4, this.distributor.getTile(Tile.NUMBER));
   }
 
   private setGridCell(index: number, tile: Tile) {
