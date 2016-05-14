@@ -3,6 +3,7 @@ import { Subject }    from 'rxjs/Subject';
 
 import { Tile } from './tile';
 import { DistributorService } from './distributor.service';
+import { CalculatorService } from './calculator.service';
 
 export interface SquarePosition {
   place: number;
@@ -36,7 +37,8 @@ export class GameService {
 
   private selectedRack: SquareContent = null;
 
-  constructor(private distributor: DistributorService) { }
+  constructor(private distributor: DistributorService,
+    private calculator: CalculatorService) { }
 
   /** restart a new game  */
   public restart() {
@@ -97,7 +99,12 @@ export class GameService {
 
   /** subroutine to place the selected tile in the grid */
   private setSelectedGrid(index: number) {
-    if (this.selectedRack != null && this.grid[index] == null) {
+    let newContent: SquareContent = {
+      tile: this.selectedRack.tile,
+      position: {place: GameService.PLACE_GRID, index}
+    };
+    if (this.selectedRack != null && this.grid[index] == null
+      && this.calculator.canAddTile(this.grid, newContent)) {
       this.setGridCell(index, this.selectedRack.tile);
       this.setRackCell(
         this.selectedRack.position.index,

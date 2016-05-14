@@ -37,6 +37,12 @@ A game service handles game events:
  - a square is selected from the rack
  - the selected square is put in the grid
  
+# The calculator service
+
+ This service, given a grid, the tiles already on it and a new tile, knows:
+  
+ - if the new tile can be put in a given postion
+ - if some lines are completed with the new tile at given position
 
 # This is your [AngularAttack](https://www.angularattack.com) 2016 Repo
 
