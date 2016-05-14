@@ -6,6 +6,7 @@ import { SquareComponent } from './square';
 import { GameService } from './game.service';
 import { DistributorService } from './distributor.service';
 import { CalculatorService } from './calculator.service';
+import { AudioService } from './audio.service';
 
 declare var i18nextBrowserLanguageDetector: any;
 declare var i18nextXHRBackend: any;
@@ -30,7 +31,7 @@ const I18N_PROVIDERS = [
   selector: 'arithmetis-app',
   templateUrl: 'arithmetis.component.html',
   styleUrls: ['arithmetis.component.css'],
-  providers: [I18N_PROVIDERS, GameService, DistributorService, CalculatorService],
+  providers: [I18N_PROVIDERS, GameService, DistributorService, CalculatorService, AudioService],
   directives: [SquareComponent, I18nDirective],
   encapsulation: ViewEncapsulation.None
 })
@@ -44,7 +45,7 @@ export class ArithmetisAppComponent implements AfterViewInit {
   loop5 = new Array(5);
 
   constructor(private game: GameService, private i18n: I18nService,
-    private zone: NgZone) {
+    private zone: NgZone, private audio: AudioService) {
   }
 
   ngAfterViewInit() {

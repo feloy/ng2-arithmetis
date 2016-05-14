@@ -4,6 +4,7 @@ import { Subject }    from 'rxjs/Subject';
 import { Tile } from './tile';
 import { DistributorService } from './distributor.service';
 import { Clearable, CalculatorService } from './calculator.service';
+import { AudioService } from './audio.service';
 
 export interface SquarePosition {
   place: number;
@@ -30,6 +31,7 @@ export class GameService {
   public started: boolean = false;
   private level: number;
   public linesLeft: number;
+  private beepDone = false;
 
   private changeSource = new Subject<SquareContent>();
   change$ = this.changeSource.asObservable();
@@ -40,7 +42,7 @@ export class GameService {
   private selectedRack: SquareContent = null;
 
   constructor(private distributor: DistributorService,
-    private calculator: CalculatorService) { }
+    private calculator: CalculatorService, private audio: AudioService) { }
 
   /** restart a new game  */
   public restart() {
@@ -73,6 +75,8 @@ export class GameService {
 
     if (this.level > 1) {
       this.sendLeaderboardLevel();
+
+      this.audio.playLevel(this.level);
     }
   }
 
@@ -113,11 +117,14 @@ export class GameService {
     let toClear: Array<Clearable> = new Array();
     if (this.selectedRack != null && this.grid[index] == null
       && (toClear = this.calculator.canAddTile(this.grid, newContent))) {
+
       this.setGridCell(index, this.selectedRack.tile);
       this.setRackCell(
         this.selectedRack.position.index,
         this.distributor.getTile(this.selectedRack.tile.type));
       this.setSelectedRack(null, null);
+
+      this.audio.playDone(toClear.length);
 
       for (let i = 0; i < toClear.length; i++) {
         let clearable: Clearable = toClear[i];
@@ -131,6 +138,10 @@ export class GameService {
       this.linesLeft = Math.max(0, this.linesLeft - toClear.length);
       if (this.linesLeft == 0 && this.calculator.gridIsEmpty(this.grid)) {
         this.changeLevel(this.level + 1);
+        this.beepDone = false;
+      } else if (this.linesLeft == 0 && !this.beepDone) {
+        this.audio.playBeep();
+        this.beepDone = true;
       }
     }
   }
