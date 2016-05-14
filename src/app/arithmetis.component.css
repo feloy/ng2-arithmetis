@@ -5,6 +5,7 @@
   flex-wrap: wrap;
   border: 1px solid red;
   padding: 5px;
+  margin-top: 20px; 
 }
 
 .rack {

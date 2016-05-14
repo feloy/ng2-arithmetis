@@ -44,14 +44,14 @@ export class CalculatorService {
       return [];
     }
 
-    let toClear: Array<Clearable> = new Array ();
+    let toClear: Array<Clearable> = new Array();
     if (lineDone) {
       if (!this.checkOperation(lineDone)) {
         // remove placed tile for tests
         grid[newOne.position.index] = null;
         return null;
       } else {
-        toClear.push({direction: CalculatorService.DIR_HORIZONTAL, offset: line});
+        toClear.push({ direction: CalculatorService.DIR_HORIZONTAL, offset: line });
       }
     }
     if (colDone) {
@@ -60,7 +60,7 @@ export class CalculatorService {
         grid[newOne.position.index] = null;
         return null;
       } else {
-        toClear.push({direction: CalculatorService.DIR_VERTICAL, offset: col});
+        toClear.push({ direction: CalculatorService.DIR_VERTICAL, offset: col });
       }
     }
     if (antislashDone) {
@@ -69,7 +69,7 @@ export class CalculatorService {
         grid[newOne.position.index] = null;
         return null;
       } else {
-        toClear.push({direction: CalculatorService.DIR_ANTISLASH, offset: 0});
+        toClear.push({ direction: CalculatorService.DIR_ANTISLASH, offset: 0 });
       }
     }
     if (slashDone) {
@@ -78,12 +78,17 @@ export class CalculatorService {
         grid[newOne.position.index] = null;
         return null;
       } else {
-        toClear.push({direction: CalculatorService.DIR_SLASH, offset: 0});
+        toClear.push({ direction: CalculatorService.DIR_SLASH, offset: 0 });
       }
     }
-    
+
     console.log('toClear: ' + JSON.stringify(toClear));
     return toClear;
+  }
+
+  /** Returns true if grid is empty and ready to go to next level */
+  public gridIsEmpty(grid: Array<Tile>): boolean {
+    return grid.every(el => el == null);
   }
 
   private checkLine(grid: Array<Tile>, line: number): string {

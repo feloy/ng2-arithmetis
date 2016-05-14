@@ -28,6 +28,7 @@ export class GameService {
 
   private started: boolean = false;
   private level: number;
+  public linesLeft: number;
 
   private changeSource = new Subject<SquareContent>();
   change$ = this.changeSource.asObservable();
@@ -67,6 +68,7 @@ export class GameService {
   private changeLevel(level) {
     this.level = level;
     this.distributor.setLevel(this.level);
+    this.linesLeft = this.level;
   }
 
   /** subroutine to place tile in the grid and tell to all concerned */
@@ -120,6 +122,10 @@ export class GameService {
           case CalculatorService.DIR_ANTISLASH: this.clearAntislash(); break;
           case CalculatorService.DIR_SLASH: this.clearSlash(); break;
         }
+      }
+      this.linesLeft = Math.max(0, this.linesLeft - toClear.length);
+      if (this.linesLeft == 0 && this.calculator.gridIsEmpty(this.grid)) {
+        this.changeLevel(this.level + 1);
       }
     }
   }

@@ -36,6 +36,7 @@ A game service handles game events:
  - restart game
  - a square is selected from the rack
  - the selected square is put in the grid
+ - increase the level when the number of remaining lines is 0 and grid is empty
  
 # The calculator service
 
