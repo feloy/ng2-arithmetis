@@ -52,11 +52,11 @@ export class ArithmetisAppComponent implements AfterViewInit {
       'google-login-button',
       {
         'onSuccess': (user) => {
-          console.log(user);
           this.zone.run(() => {
             this.connected = true;
             this.user = user;
             this.profile = this.user.getBasicProfile();
+            this.getLeaderboards();
           });
         },
         'scope': 'profile',
@@ -65,7 +65,6 @@ export class ArithmetisAppComponent implements AfterViewInit {
           console.log('error:' + err);
         }
       });
-    console.log('afterview: gapi started'); //this is printed 
   }
 
   public getPlaceRack() {
@@ -86,6 +85,17 @@ export class ArithmetisAppComponent implements AfterViewInit {
         this.connected = false;
         this.user = null;
         this.profile = null;
+      });
+    });
+  }
+
+  private getLeaderboards() {
+    gapi.client.load('games', 'v1', (response1) => {
+      var request = gapi.client.games.leaderboards.list(
+        { maxResults: 5 }
+      );
+      request.execute((response2) => {
+        console.log(response2);
       });
     });
   }

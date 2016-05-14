@@ -15,6 +15,7 @@ export interface SquareContent {
   position: SquarePosition;
 }
 
+declare var gapi;
 
 @Injectable()
 export class GameService {
@@ -69,6 +70,10 @@ export class GameService {
     this.level = level;
     this.distributor.setLevel(this.level);
     this.linesLeft = this.level;
+
+    if (this.level > 1) {
+      this.sendLeaderboardLevel();
+    }
   }
 
   /** subroutine to place tile in the grid and tell to all concerned */
@@ -152,5 +157,19 @@ export class GameService {
     for (let i = 0; i < GameService.SIZE; i++) {
       this.setGridCell(i + GameService.SIZE * (GameService.SIZE - 1 - i), null);
     }
+  }
+
+  private sendLeaderboardLevel() {
+    gapi.client.load('games', 'v1', (response1) => {
+      var request = gapi.client.games.scores.submit(
+        {
+          leaderboardId: 'CgkIg-L2stUXEAIQHw',
+          score: this.level
+        }
+      );
+      request.execute(function (response) {
+        console.log(response);
+      });
+    });
   }
 }
