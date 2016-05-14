@@ -3,16 +3,16 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AudioService {
 
-  public static BEEP = 'assets/snd/beep.mp3';
-  public static DONE = 'assets/snd/done.mp3';
-  public static LEVEL_A = 'assets/snd/level_a.mp3';
-  public static LEVEL_C = 'assets/snd/level_c.mp3';
-  public static LEVEL_D = 'assets/snd/level_d.mp3';
-  public static LEVEL_E = 'assets/snd/level_e.mp3';
-  public static LEVEL_F = 'assets/snd/level_f.mp3';
-  public static LEVEL_G = 'assets/snd/level_g.mp3';
+  public static BEEP = new Audio('assets/snd/beep.mp3');
+  public static DONE = new Audio('assets/snd/done.mp3');
+  public static LEVEL_A = new Audio('assets/snd/level_a.mp3');
+  public static LEVEL_C = new Audio('assets/snd/level_c.mp3');
+  public static LEVEL_D = new Audio('assets/snd/level_d.mp3');
+  public static LEVEL_E = new Audio('assets/snd/level_e.mp3');
+  public static LEVEL_F = new Audio('assets/snd/level_f.mp3');
+  public static LEVEL_G = new Audio('assets/snd/level_g.mp3');
 
-  private levels: Array<string> = [
+  private levels: Array<any> = [
     AudioService.LEVEL_A,
     AudioService.LEVEL_C,
     AudioService.LEVEL_D,
@@ -38,9 +38,8 @@ export class AudioService {
     this.play(this.levels[level % (this.levels.length)]);
   }
 
-  private play(snd: string) {
-    var audio = new Audio(snd);
-    audio.play();
+  private play(snd: any) {
+    snd.play();
   }
 
 }
