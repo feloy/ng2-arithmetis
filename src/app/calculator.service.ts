@@ -138,15 +138,13 @@ export class CalculatorService {
     if (math.eval(parts[0]) == math.eval(parts[1])) {
       return true;
     }
-    // Try reversing the operation, only if - in the operation
-    if (str.indexOf('-') > -1) {
-      str = str.split('').reverse().join('');
-      parts = str.split('=');
-      console.log('left: ' + math.eval(parts[0]));
-      console.log('right: ' + math.eval(parts[1]));
-      if (math.eval(parts[0]) == math.eval(parts[1])) {
-        return true;
-      }
+    // Try reversing the operation
+    str = str.split('').reverse().join('');
+    parts = str.split('=');
+    console.log('left: ' + math.eval(parts[0]));
+    console.log('right: ' + math.eval(parts[1]));
+    if (math.eval(parts[0]) == math.eval(parts[1])) {
+      return true;
     }
     return false;
   }
