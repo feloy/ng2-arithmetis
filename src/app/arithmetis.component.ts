@@ -3,10 +3,13 @@ import { Component, ViewEncapsulation, provide, AfterViewInit, NgZone } from '@a
 import {I18nServiceConfig, I18nService, I18nDirective} from 'ng2-i18next/ng2-i18next';
 
 import { SquareComponent } from './square';
+import { ChronoComponent } from './chrono';
+
 import { GameService } from './game.service';
 import { DistributorService } from './distributor.service';
 import { CalculatorService } from './calculator.service';
 import { AudioService } from './audio.service';
+import { ChronoService } from './chrono.service';
 
 declare var i18nextBrowserLanguageDetector: any;
 declare var i18nextXHRBackend: any;
@@ -31,8 +34,9 @@ const I18N_PROVIDERS = [
   selector: 'arithmetis-app',
   templateUrl: 'arithmetis.component.html',
   styleUrls: ['arithmetis.component.css'],
-  providers: [I18N_PROVIDERS, GameService, DistributorService, CalculatorService, AudioService],
-  directives: [SquareComponent, I18nDirective],
+  providers: [I18N_PROVIDERS, GameService, DistributorService,
+    CalculatorService, AudioService, ChronoService],
+  directives: [SquareComponent, I18nDirective, ChronoComponent],
   encapsulation: ViewEncapsulation.None
 })
 export class ArithmetisAppComponent implements AfterViewInit {

@@ -6,6 +6,7 @@
     <div class="linesleft" *ngIf="game.started">{{i18n.t('n_lines_left', {count: game.linesLeft})}}</div>
   </div>
   <div class="gobtn"><button (click)="go()" i18n="gobtn"></button></div>
+  <div class="chrono"><app-chrono></app-chrono></div>
 </div>
 <div class="grid">
   <app-square *ngFor="let none of loop25; let i=index" [place]="getPlaceGrid()" [index]="i"></app-square>
