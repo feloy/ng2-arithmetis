@@ -12,7 +12,15 @@ The objects to implement:
  - a *grid component* which will contain 5x5 squares
  - a *square component*, element of rack and grid.
 
-# First install a new project with angular-cli... 
+# The tile class
+
+ - a type: number, operator, equal sign
+ - a face: the number 0, 1, ...), the operator (+ or -), =
+
+# The Distributor service 
+
+ - a method getTitle(type) returns a new tile 
+ 
 
 # This is your [AngularAttack](https://www.angularattack.com) 2016 Repo
 
