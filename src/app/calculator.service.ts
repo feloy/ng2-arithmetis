@@ -3,17 +3,29 @@ import { Injectable } from '@angular/core';
 import { Tile } from './tile';
 import { GameService, SquareContent } from './game.service';
 
+declare var math: any;
+
+export interface Clearable {
+  direction: number;
+  offset: number;
+}
+
 @Injectable()
 export class CalculatorService {
 
-  private static DIR_HORIZONTAL = 1;
-  private static DIR_VERTICAL = 2;
-  private static DIR_ANTISLASH = 3;
-  private static DIR_SLASH = 4;
+  public static DIR_HORIZONTAL = 1;
+  public static DIR_VERTICAL = 2;
+  public static DIR_ANTISLASH = 3;
+  public static DIR_SLASH = 4;
 
   constructor() { }
 
-  public canAddTile(grid: Array<Tile>, newOne: SquareContent): boolean {
+  /**
+   * returns: 
+   *   null if the tile cannot be added
+   *   an array elsewhere, containing information about operations to remove 
+   */
+  public canAddTile(grid: Array<Tile>, newOne: SquareContent): Array<Clearable> {
     // temporarly place new tile
     grid[newOne.position.index] = newOne.tile;
     let line: number = Math.floor(newOne.position.index / 5);
@@ -29,19 +41,49 @@ export class CalculatorService {
       && antislashDone == null && slashDone == null) {
       // remove placed tile for tests
       grid[newOne.position.index] = null;
-      return true;
+      return [];
     }
 
-    let done = 0;
+    let toClear: Array<Clearable> = new Array ();
     if (lineDone) {
       if (!this.checkOperation(lineDone)) {
         // remove placed tile for tests
         grid[newOne.position.index] = null;
-        return false;
+        return null;
       } else {
-        done++;
+        toClear.push({direction: CalculatorService.DIR_HORIZONTAL, offset: line});
       }
     }
+    if (colDone) {
+      if (!this.checkOperation(colDone)) {
+        // remove placed tile for tests
+        grid[newOne.position.index] = null;
+        return null;
+      } else {
+        toClear.push({direction: CalculatorService.DIR_VERTICAL, offset: col});
+      }
+    }
+    if (antislashDone) {
+      if (!this.checkOperation(antislashDone)) {
+        // remove placed tile for tests
+        grid[newOne.position.index] = null;
+        return null;
+      } else {
+        toClear.push({direction: CalculatorService.DIR_ANTISLASH, offset: 0});
+      }
+    }
+    if (slashDone) {
+      if (!this.checkOperation(slashDone)) {
+        // remove placed tile for tests
+        grid[newOne.position.index] = null;
+        return null;
+      } else {
+        toClear.push({direction: CalculatorService.DIR_SLASH, offset: 0});
+      }
+    }
+    
+    console.log('toClear: ' + JSON.stringify(toClear));
+    return toClear;
   }
 
   private checkLine(grid: Array<Tile>, line: number): string {
@@ -81,8 +123,27 @@ export class CalculatorService {
   }
 
   private checkOperation(str: string): boolean {
-//    let res = eval(str);
-//    console.log(str + ' => ' + res);
-    return true;
+    let parts: string[] = str.split('=');
+    if (parts.length != 2) {
+      console.log('parts length: ' + parts.length);
+      return false;
+    }
+    console.log('left: ' + math.eval(parts[0]));
+    console.log('right: ' + math.eval(parts[1]));
+    if (math.eval(parts[0]) == math.eval(parts[1])) {
+      return true;
+    }
+    // Try reversing the operation, only if - in the operation
+    if (str.indexOf('-') > -1) {
+      str = str.split('').reverse().join('');
+      parts = str.split('=');
+      console.log('left: ' + math.eval(parts[0]));
+      console.log('right: ' + math.eval(parts[1]));
+      if (math.eval(parts[0]) == math.eval(parts[1])) {
+        return true;
+      }
+    }
+    return false;
   }
+
 }

@@ -3,7 +3,7 @@ import { Subject }    from 'rxjs/Subject';
 
 import { Tile } from './tile';
 import { DistributorService } from './distributor.service';
-import { CalculatorService } from './calculator.service';
+import { Clearable, CalculatorService } from './calculator.service';
 
 export interface SquarePosition {
   place: number;
@@ -42,7 +42,7 @@ export class GameService {
 
   /** restart a new game  */
   public restart() {
-    this.changeLevel(10);
+    this.changeLevel(1);
     for (let i = 0; i < this.grid.length; i++) {
       this.setGridCell(i, null);
     }
@@ -70,7 +70,7 @@ export class GameService {
   }
 
   /** subroutine to place tile in the grid and tell to all concerned */
-  private setGridCell(index: number, tile: Tile) {
+  public setGridCell(index: number, tile: Tile) {
     this.grid[index] = tile;
     this.changeSource.next({
       tile: tile,
@@ -101,15 +101,50 @@ export class GameService {
   private setSelectedGrid(index: number) {
     let newContent: SquareContent = {
       tile: this.selectedRack.tile,
-      position: {place: GameService.PLACE_GRID, index}
+      position: { place: GameService.PLACE_GRID, index }
     };
+    let toClear: Array<Clearable> = new Array();
     if (this.selectedRack != null && this.grid[index] == null
-      && this.calculator.canAddTile(this.grid, newContent)) {
+      && (toClear = this.calculator.canAddTile(this.grid, newContent))) {
       this.setGridCell(index, this.selectedRack.tile);
       this.setRackCell(
         this.selectedRack.position.index,
         this.distributor.getTile(this.selectedRack.tile.type));
       this.setSelectedRack(null, null);
+
+      for (let i = 0; i < toClear.length; i++) {
+        let clearable: Clearable = toClear[i];
+        switch (clearable.direction) {
+          case CalculatorService.DIR_HORIZONTAL: this.clearLine(clearable.offset); break;
+          case CalculatorService.DIR_VERTICAL: this.clearCol(clearable.offset); break;
+          case CalculatorService.DIR_ANTISLASH: this.clearAntislash(); break;
+          case CalculatorService.DIR_SLASH: this.clearSlash(); break;
+        }
+      }
+    }
+  }
+
+  private clearLine(line: number) {
+    for (let i = 0; i < GameService.SIZE; i++) {
+      this.setGridCell(i + GameService.SIZE * line, null);
+    }
+  }
+
+  private clearCol(col: number) {
+    for (let i = 0; i < GameService.SIZE; i++) {
+      this.setGridCell(col + GameService.SIZE * i, null);
+    }
+  }
+
+  private clearAntislash() {
+    for (let i = 0; i < GameService.SIZE; i++) {
+      this.setGridCell(i + GameService.SIZE * i, null);
+    }
+  }
+
+  private clearSlash() {
+    for (let i = 0; i < GameService.SIZE; i++) {
+      this.setGridCell(i + GameService.SIZE * (GameService.SIZE - 1 - i), null);
     }
   }
 }
