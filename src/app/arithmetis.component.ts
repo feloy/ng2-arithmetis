@@ -10,17 +10,20 @@ import { CalculatorService } from './calculator.service';
 declare var i18nextBrowserLanguageDetector: any;
 declare var i18nextXHRBackend: any;
 
+declare var profile: any;
+declare var gapi;
+
 const I18N_PROVIDERS = [
-    provide(I18nServiceConfig, {
-        useValue: {
-            use: [i18nextBrowserLanguageDetector, i18nextXHRBackend],
-            config: {
-                detection: {order: ['navigator']},
-                fallbackLng: 'en'
-            }
-        }
-    }),
-    I18nService
+  provide(I18nServiceConfig, {
+    useValue: {
+      use: [i18nextBrowserLanguageDetector, i18nextXHRBackend],
+      config: {
+        detection: { order: ['navigator'] },
+        fallbackLng: 'en'
+      }
+    }
+  }),
+  I18nService
 ];
 
 @Component({
@@ -34,6 +37,7 @@ const I18N_PROVIDERS = [
 })
 export class ArithmetisAppComponent {
 
+  public profile = profile;
   loop25 = new Array(25);
   loop5 = new Array(5);
 
@@ -48,5 +52,15 @@ export class ArithmetisAppComponent {
 
   public go() {
     this.game.restart();
+
+    gapi.client.load('games', 'v1', (resp) => {
+      var request = gapi.client.games.leaderboards.list(
+        { maxResults: 5 }
+      );
+      request.execute(function (response) {
+        console.log(response);
+        // Do something interesting with the response
+      });
+    });
   }
 }
