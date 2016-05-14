@@ -3,6 +3,9 @@
   width: 64px;
   height: 64px;
   margin: 1px;
+  line-height: 64px;
+  font-size: 32px;
+  text-align: center;
 }
 
 .empty {

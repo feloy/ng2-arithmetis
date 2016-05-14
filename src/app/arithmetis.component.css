@@ -10,7 +10,7 @@
 .rack {
   width: 340px;
   height: 68px;
-  margin-top: 20px;
+  margin: 20px 0;
   display: flex;
   border: 1px solid blue;
   padding: 5px;

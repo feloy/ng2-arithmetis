@@ -25,6 +25,19 @@ The objects to implement:
 
  Will display either nothing or a tile
 
+ - a place (grid or rack)
+ - a position in its place
+
+# The Game service
+
+A game service handles game events:
+
+ - the level
+ - restart game
+ - a square is selected from the rack
+ - the selected square is put in the grid
+ 
+
 # This is your [AngularAttack](https://www.angularattack.com) 2016 Repo
 
 This repo is the start of your AngularAttack 2016 entry. It contains the simple [Angular2 starter](https://angular.io/docs/ts/latest/quickstart.html) files.

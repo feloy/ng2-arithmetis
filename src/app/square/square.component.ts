@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Tile } from '../tile';
+
+import { GameService, SquareContent } from '../game.service';
 
 @Component({
   moduleId: module.id,
@@ -10,9 +12,19 @@ import { Tile } from '../tile';
 })
 export class SquareComponent implements OnInit {
 
+  @Input() place: number;
+  @Input() index: number;
+
   private tile: Tile;
 
-  constructor() { }
+  constructor(game: GameService) {
+    game.change$.subscribe((content: SquareContent) => {
+      if (this.place != content.place || this.index != content.index) {
+        return;
+      }
+      this.tile = content.tile;
+    });
+  }
 
   ngOnInit() {
   }
