@@ -1,0 +1,6 @@
+li.score {
+  height: 36px;
+}
+
+>>> .modal-dialog .modal-dialog { margin-top: 0; }
+>>> .modal-body { height: 500px; overflow: auto; }

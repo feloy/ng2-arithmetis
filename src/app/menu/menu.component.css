@@ -3,7 +3,7 @@ ul {
   padding: 0;  
 }
 
->>> li { 
+>>> li.menuentry { 
   list-style-type: none;
   font-size: 21px; 
   text-align: center;
@@ -11,6 +11,6 @@ ul {
   color: #777;
 }
 
->>> li:hover {
+>>> li.menuentry:hover {
   color: #444;
 }

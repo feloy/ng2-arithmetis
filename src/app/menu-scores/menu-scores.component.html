@@ -1,6 +1,12 @@
-      <li (click)="scoresModal.open()">View best scores</li>
-<modal #scoresModal title="Best scores" [hideCloseButton]="false" [closeOnEscape]="false" [closeOnOutsideClick]="false" modalClass="modal-sm">
+<li class="menuentry" (click)="scoresModal.open(); open();">View best scores</li>
+<modal #scoresModal [hideCloseButton]="false" [closeOnEscape]="false" [closeOnOutsideClick]="false" modalClass="modal-sm">
+  <modal-header>
+    <img width="32" src="{{logo}}">{{name}}
+  </modal-header>
   <modal-content>
-    ... bla ...
+    <ul style="overflow: auto">
+      <li class="score" *ngFor="let score of scores">{{score?.formattedScoreRank}}</li>
+    </ul>
   </modal-content>
+  <modal-footer>more...</modal-footer>
 </modal>

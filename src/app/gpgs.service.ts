@@ -1,6 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 
-declare var gapi;
+declare var gapi, i18next;
 
 @Injectable()
 export class GpgsService {
@@ -104,5 +104,41 @@ export class GpgsService {
         callback(response);
       });
     });
+  }
+
+  public getLeaderboardForLevel(level: number, callback: (any) => void) {
+    gapi.client.load('games', 'v1', (response1) => {
+      var request = gapi.client.games.leaderboards.get(
+        {
+          leaderboardId: GpgsService.levels[level - 1],
+          language: this.getI18nFirstLanguage()
+        }
+      );
+      request.execute(function (response) {
+        callback(response);
+      });
+    });
+  }
+
+  public getScoresForLevel(level: number, callback: (any) => void) {
+    gapi.client.load('games', 'v1', (response1) => {
+      var request = gapi.client.games.scores.list(
+        {
+          collection: 'PUBLIC',
+          leaderboardId: 'CgkIg-L2stUXEAIQCA', // TODO GpgsService.levels[level - 1],
+          timeSpan: 'ALL_TIME',
+          maxResults: 25,
+          language: this.getI18nFirstLanguage()
+        }
+      );
+      request.execute(function (response) {
+        callback(response);
+      });
+    });
+  }
+
+  // not here
+  private getI18nFirstLanguage() {
+    return i18next.languages[0];
   }
 }

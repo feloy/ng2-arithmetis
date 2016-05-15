@@ -31,8 +31,8 @@ export class GameService {
   public started: boolean = false;
   public linesLeft: number;
   public myBestAtLevel = null;
+  public level: number;
 
-  private level: number;
   private beepDone = false;
 
   private changeSource = new Subject<SquareContent>();
