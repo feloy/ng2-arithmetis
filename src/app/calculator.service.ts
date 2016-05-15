@@ -30,7 +30,6 @@ export class CalculatorService {
     grid[newOne.position.index] = newOne.tile;
     let line: number = Math.floor(newOne.position.index / 5);
     let col: number = newOne.position.index % 5;
-    console.log('line ' + line + ' col ' + col);
     let lineDone: string = this.checkLine(grid, line);
     let colDone: string = this.checkCol(grid, col);
     let antislashDone: string = this.checkAntislash(grid);
@@ -82,7 +81,6 @@ export class CalculatorService {
       }
     }
 
-    console.log('toClear: ' + JSON.stringify(toClear));
     return toClear;
   }
 
@@ -123,26 +121,20 @@ export class CalculatorService {
       }
       ret += grid[x + GameService.SIZE * y] ? grid[x + GameService.SIZE * y].face : '';
     }
-    console.log(ret);
     return ret;
   }
 
   private checkOperation(str: string): boolean {
     let parts: string[] = str.split('=');
     if (parts.length != 2) {
-      console.log('parts length: ' + parts.length);
       return false;
     }
-    console.log('left: ' + math.eval(parts[0]));
-    console.log('right: ' + math.eval(parts[1]));
     if (math.eval(parts[0]) == math.eval(parts[1])) {
       return true;
     }
     // Try reversing the operation
     str = str.split('').reverse().join('');
     parts = str.split('=');
-    console.log('left: ' + math.eval(parts[0]));
-    console.log('right: ' + math.eval(parts[1]));
     if (math.eval(parts[0]) == math.eval(parts[1])) {
       return true;
     }

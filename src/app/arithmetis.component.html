@@ -5,7 +5,7 @@
   <div class="signout" [hidden]="!gpgs.connected">
     <div class="name">{{gpgs.profile?.getName()}}</div><button (click)="signout()">sign out</button></div>
 
-  <div class="menu"><app-menu></app-menu></div>
+  <div class="menu"><app-menu (restart)="go()"></app-menu></div>
 </div>
 
 <div class="infos">

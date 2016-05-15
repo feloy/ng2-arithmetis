@@ -43,6 +43,7 @@ const barrels: string[] = [
   'app/chrono',
   'app/menu',
   'app/menu-scores',
+  'app/menu-leaderboards',
   /** @cli-barrel */
 ];
 

@@ -5,6 +5,8 @@ ul {
 
 >>> li.menuentry  { 
   list-style-type: none;
+  height: 48px;
+  line-height: 48px;
 }
 
 >>> li.menuentry > span {

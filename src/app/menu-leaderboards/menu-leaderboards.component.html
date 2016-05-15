@@ -1,0 +1,24 @@
+<li class="menuentry" (click)="leaderboardsModal.open(); open();"><span>View leaderboards</span>
+  <modal #leaderboardsModal title="Leaderboards" [hideCloseButton]="false" [closeOnEscape]="false" [closeOnOutsideClick]="false"
+    modalClass="modal-sm">
+    <modal-content>
+      <ul *ngIf="boards!=null && selectedBoard == null">
+        <li class="leaderboard" *ngFor="let board of boards" (click)="selectBoard(board)">
+          <img width="48" src="{{board.iconUrl}}"><span>{{board.name}}</span>
+        </li>
+      </ul>
+
+      <ul *ngIf="selectedBoard">
+        <li class="score" *ngFor="let score of scores">
+          <div class="rank">{{score?.formattedScoreRank}}</div>
+          <div class="avatar"></div>
+          <div class="info">
+            <div class="name">{{score?.player?.displayName}}</div>
+            <div class="score">{{score?.formattedScore}}</div>
+          </div>
+        </li>
+      </ul>
+    </modal-content>
+    <modal-footer></modal-footer>
+  </modal>
+</li>

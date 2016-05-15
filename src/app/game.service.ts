@@ -76,12 +76,9 @@ export class GameService {
     this.distributor.setLevel(this.level);
     this.linesLeft = this.level;
     this.gpgs.getMyBestAtLevel(this.level, score => {
-//      console.log(score.items[0].scoreString);
       if (typeof score.items != 'undefined') {
-        console.log('get score');
         this.myBestAtLevel = score.items[0].scoreString;
       } else {
-        console.log('null score');
         this.myBestAtLevel = null;
       }
     });
@@ -125,12 +122,15 @@ export class GameService {
 
   /** subroutine to place the selected tile in the grid */
   private setSelectedGrid(index: number) {
+    if (!this.selectedRack) {
+      return;
+    }
     let newContent: SquareContent = {
       tile: this.selectedRack.tile,
       position: { place: GameService.PLACE_GRID, index }
     };
     let toClear: Array<Clearable> = new Array();
-    if (this.selectedRack != null && this.grid[index] == null
+    if (this.grid[index] == null
       && (toClear = this.calculator.canAddTile(this.grid, newContent))) {
 
       this.setGridCell(index, this.selectedRack.tile);

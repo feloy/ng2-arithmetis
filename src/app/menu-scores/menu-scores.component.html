@@ -1,10 +1,10 @@
-<li class="menuentry" (click)="scoresModal.open(); open();"><span>View best scores</span>
+<li *ngIf="game.level > 0" class="menuentry" (click)="scoresModal.open(); open();"><span>View level best scores</span>
 <modal #scoresModal [hideCloseButton]="false" [closeOnEscape]="false" [closeOnOutsideClick]="false" modalClass="modal-sm">
   <modal-header>
     <img width="32" src="{{logo}}">{{name}}
   </modal-header>
   <modal-content>
-    <ul style="overflow: auto">
+    <ul>
       <li class="score" *ngFor="let score of scores">
         <div class="rank">{{score?.formattedScoreRank}}</div>
         <div class="avatar"></div>
@@ -18,3 +18,4 @@
   <modal-footer></modal-footer>
 </modal>
 </li>
+

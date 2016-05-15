@@ -7,12 +7,15 @@ import { GpgsService } from '../gpgs.service';
 
 @Component({
   moduleId: module.id,
-  selector: 'app-menu-scores',
-  templateUrl: 'menu-scores.component.html',
-  styleUrls: ['menu-scores.component.css'],
+  selector: 'app-menu-leaderboards',
+  templateUrl: 'menu-leaderboards.component.html',
+  styleUrls: ['menu-leaderboards.component.css'],
   directives: [Modal]
 })
-export class MenuScoresComponent implements OnInit {
+export class MenuLeaderboardsComponent implements OnInit {
+
+  public boards = null;
+  public selectedBoard;
 
   public logo: string = '/assets/icons8/Synchronize-32.png';
   public name: string;
@@ -24,12 +27,22 @@ export class MenuScoresComponent implements OnInit {
   }
 
   open() {
-    this.gpgs.getLeaderboardForLevel(this.game.level, response => {
+    this.selectedBoard = null;
+    this.gpgs.getLeaderboardList(response => {
+      this.boards = response.items;
+    });
+  }
+
+  selectBoard(board) {
+    this.scores = null;
+    this.selectedBoard = board;
+    this.gpgs.getLeaderboard(board.id, response => {
       this.logo = response.iconUrl;
       this.name = response.name;
-      this.gpgs.getScoresForLevel(this.game.level, scores => {
+      this.gpgs.getScores(board.id, scores => {
         this.scores = scores.items;
       });
     });
+
   }
 }

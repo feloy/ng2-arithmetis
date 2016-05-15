@@ -1,8 +1,23 @@
->>> .modal-dialog .modal-dialog { margin-top: 0; }
->>> .modal-body { height: 400px; overflow: auto; }
-
 ul { padding: 0; }
 
+li.leaderboard {
+  margin-bottom: 8px; 
+  list-style-type: none;
+  display: flex;
+  cursor: pointer;
+}
+
+.leaderboard > img {
+  width: 48px;
+  height: 48px;
+}
+
+.leaderboard > span {
+  margin-left: 12px;
+  font-size: 20px;
+}
+
+/* SCORES */
 li.score {
   height: 48px;
   display: flex;

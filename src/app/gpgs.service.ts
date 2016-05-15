@@ -9,6 +9,8 @@ export class GpgsService {
   public user;
   public profile;
 
+  private static levelBoard: string = 'CgkIg-L2stUXEAIQHw';
+
   private static levels: Array<string> = [
     'CgkIg-L2stUXEAIQIQ',
     'CgkIg-L2stUXEAIQIg',
@@ -37,7 +39,6 @@ export class GpgsService {
         'scope': 'profile',
         'theme': 'dark',
         'onfailure': (err) => {
-          console.log('error:' + err);
         }
       });
   }
@@ -60,12 +61,11 @@ export class GpgsService {
     gapi.client.load('games', 'v1', (response1) => {
       var request = gapi.client.games.scores.submit(
         {
-          leaderboardId: 'CgkIg-L2stUXEAIQHw',
+          leaderboardId: GpgsService.levelBoard,
           score: level
         }
       );
       request.execute(function (response) {
-        console.log(response);
       });
     });
   }
@@ -85,12 +85,14 @@ export class GpgsService {
         }
       );
       request.execute(function (response) {
-        console.log(response);
       });
     });
   }
 
   public getMyBestAtLevel(level: number, callback: (score) => void) {
+    if (!this.connected) {
+      return;
+    }
     gapi.client.load('games', 'v1', (response1) => {
       var request = gapi.client.games.scores.get(
         {
@@ -99,57 +101,77 @@ export class GpgsService {
           timeSpan: 'ALL_TIME'
         }
       );
-      request.execute(function (response) {
-        console.log(response);
-        callback(response);
+      request.execute(response => {
+        this.zone.run(() => {
+          callback(response);
+        });
       });
     });
   }
 
-  public getLeaderboardForLevel(level: number, callback: (any) => void) {
+  public getLeaderboardForLevel(level: number, callback: (a: any) => void) {
+    this.getLeaderboard(GpgsService.levels[level - 1], callback);
+  }
+
+  public getLeaderboard(id: string, callback: (a: any) => void) {
     gapi.client.load('games', 'v1', (response1) => {
       var request = gapi.client.games.leaderboards.get(
         {
-          leaderboardId: GpgsService.levels[level - 1],
+          leaderboardId: id,
           language: this.getI18nFirstLanguage()
         }
       );
-      request.execute(function (response) {
-        callback(response);
+      request.execute(response => {
+        this.zone.run(() => {
+          callback(response);
+        });
       });
     });
   }
 
-  public getScoresForLevel(level: number, callback: (any) => void) {
+  public getLeaderboardList(callback: (a: any) => void) {
+    gapi.client.load('games', 'v1', (response1) => {
+      var request = gapi.client.games.leaderboards.list(
+        {
+          language: this.getI18nFirstLanguage(),
+          maxResults: 50
+        }
+      );
+      request.execute(response => {
+        let allBoards = GpgsService.levels;
+        allBoards.push(GpgsService.levelBoard);
+        response.items = response.items.filter(item => {
+          return allBoards.indexOf(item.id) > -1;
+        });
+        this.zone.run(() => {
+          callback(response);
+        });
+      });
+    });
+  }
+
+  public getScoresForLevel(level: number, callback: (a: any) => void) {
+    this.getScores(GpgsService.levels[level - 1], callback);
+  }
+
+  public getScores(id: string, callback: (a: any) => void) {
     gapi.client.load('games', 'v1', (response1) => {
       var request = gapi.client.games.scores.list(
         {
           collection: 'PUBLIC',
-          leaderboardId: GpgsService.levels[level - 1],
+          leaderboardId: id,
           timeSpan: 'ALL_TIME',
           maxResults: 25,
           language: this.getI18nFirstLanguage()
         }
       );
-      request.execute(function (response) {
-        callback(response);
-      });
-    });
-  }
-  /*
-    public loadUserProfile (id: string, callback: (any) => void) {
-      gapi.client.load('games', 'v1', (response1) => {
-        var request = gapi.client.games.players.get(
-          {
-            playerId: id,
-            language: this.getI18nFirstLanguage()
-          }
-        );
-        request.execute(function (response) {
+      request.execute(response => {
+        this.zone.run(() => {
           callback(response);
         });
       });
-    }*/
+    });
+  }
 
   // not here
   private getI18nFirstLanguage() {

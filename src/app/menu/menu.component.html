@@ -1,7 +1,10 @@
 <img class="menu" src="/assets/icons8/Menu.png" (click)="menuModal.open()">
 <modal #menuModal title="Arithmetis" [hideCloseButton]="false" [closeOnEscape]="false" [closeOnOutsideClick]="false" modalClass="modal-sm">
   <modal-content>
-    <ul><app-menu-scores></app-menu-scores>
+    <ul>
+      <li class="menuentry" (click)="menuModal.close(); go()"><span>Restart game</span></li>
+      <app-menu-scores *ngIf="gpgs.connected"></app-menu-scores>
+      <app-menu-leaderboards *ngIf="gpgs.connected"></app-menu-leaderboards>
     </ul>
   </modal-content>
   <modal-footer>&nbsp;</modal-footer>
