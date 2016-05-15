@@ -36,9 +36,9 @@ export class GpgsService {
             this.profile = this.user.getBasicProfile();
           });
         },
-        'scope': 'profile',
-        'theme': 'dark',
+        'scope': 'profile https://www.googleapis.com/auth/games',
         'onfailure': (err) => {
+          console.log('signin err' + err);
         }
       });
   }
@@ -85,6 +85,8 @@ export class GpgsService {
         }
       );
       request.execute(function (response) {
+        console.log('send chorno response: ');
+        console.log(response);
       });
     });
   }
