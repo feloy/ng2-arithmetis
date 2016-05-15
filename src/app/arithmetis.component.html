@@ -1,35 +1,39 @@
-<div class="topbar">
-  <div class="signin" [hidden]="gpgs.connected">
-    <div id="google-login-button"></div>
+<div class="board">
+  <div class="topbar">
+    <div class="signin" [hidden]="gpgs.connected">
+      <div id="google-login-button"></div>
+    </div>
+    <div class="signout" [hidden]="!gpgs.connected">
+      <div class="name">{{gpgs.profile?.getName()}}</div><button (click)="signout()">sign out</button></div>
+
+    <div class="menu">
+      <app-menu (restart)="go()" (demo)="demo()"></app-menu>
+    </div>
   </div>
-  <div class="signout" [hidden]="!gpgs.connected">
-    <div class="name">{{gpgs.profile?.getName()}}</div><button (click)="signout()">sign out</button></div>
 
-  <div class="menu"><app-menu (restart)="go()" (demo)="demo()"></app-menu></div>
-</div>
-
-<div class="infos">
-  <div class="scores">
-    <div class="level" *ngIf="game.started">{{i18n.t('level_n', {d: game.level})}}</div>
-    <div class="lines-left" *ngIf="game.started">{{i18n.t('n_lines_left', {count: game.linesLeft})}}</div>
+  <div class="infos">
+    <div class="scores">
+      <div class="level" *ngIf="game.started">{{i18n.t('level_n', {d: game.level})}}</div>
+      <div class="lines-left" *ngIf="game.started">{{i18n.t('n_lines_left', {count: game.linesLeft})}}</div>
+    </div>
+    <div class="gobtn"><button (click)="go()" i18n="gobtn"></button></div>
+    <div class="chrono">
+      <app-chrono *ngIf="game.started"></app-chrono>
+      <div class="my-best" *ngIf="game.started && game.myBestAtLevel">{{i18n.t('your_best')}} {{game.myBestAtLevel}}</div>
+    </div>
   </div>
-  <div class="gobtn"><button (click)="go()" i18n="gobtn"></button></div>
-  <div class="chrono">
-    <app-chrono *ngIf="game.started"></app-chrono>
-    <div class="my-best" *ngIf="game.started && game.myBestAtLevel">{{i18n.t('your_best')}} {{game.myBestAtLevel}}</div>
+
+  <div class="grid">
+    <app-square *ngFor="let none of loop25; let i=index" [place]="getPlaceGrid()" [index]="i"></app-square>
   </div>
-</div>
 
-<div class="grid">
-  <app-square *ngFor="let none of loop25; let i=index" [place]="getPlaceGrid()" [index]="i"></app-square>
-</div>
+  <div class="rack">
+    <app-square *ngFor="let none of loop5; let i=index" [place]="getPlaceRack()" [index]="i"></app-square>
+  </div>
 
-<div class="rack">
-  <app-square *ngFor="let none of loop5; let i=index" [place]="getPlaceRack()" [index]="i"></app-square>
-</div>
-
-<modal #endDemoModal title="Demo finished" cancelButtonLabel="close it" modalClass="modal-sm">
+  <modal #endDemoModal title="Demo finished" cancelButtonLabel="close it" modalClass="modal-sm">
     <modal-content>
-        It's up to you!
+      It's up to you!
     </modal-content>
-</modal>
+  </modal>
+</div>

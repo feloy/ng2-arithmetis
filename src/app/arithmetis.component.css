@@ -1,10 +1,15 @@
-.topbar { 
-  display: flex;
+.board {
   width: 340px;
-  margin: 10px auto;
+  margin: 0 auto;
 }
 @media screen and (max-width: 359px) {
-  .topbar { width: 260px; }
+  .board { width: 260px; }
+}
+
+.topbar { 
+  display: flex;
+  width: 100%;
+  margin: 10px 0;
 }
 
 .signin {
@@ -31,12 +36,9 @@
 .menu { width: 48px; }
 
 .infos { 
-  width: 340px;
+  width: 100%;
   margin: 0px auto 8px;  
   display: flex;
-}
-@media screen and (max-width: 359px) {
-  .infos { width: 260px; }
 }
 
 .infos > .scores {
@@ -98,8 +100,8 @@
 }
 
 .grid {
-  width: 340px;
-  height: 340px;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
   padding: 5px;
@@ -110,11 +112,11 @@
 }
 
 @media screen and (max-width: 359px) {
-  .grid { width: 260px; height: 260px; }
+  .grid { height: 260px; }
 }
 
 .rack {
-  width: 340px;
+  width: 100%;
   height: 76px;
   margin: 20px auto;
   display: flex;
@@ -125,7 +127,7 @@
 }
 
 @media screen and (max-width: 359px) {
-  .rack { width: 260px; height: 60px; }
+  .rack { height: 60px; }
 }
 
 body { 
