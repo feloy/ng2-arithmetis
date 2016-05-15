@@ -65,4 +65,8 @@ export class ArithmetisAppComponent implements AfterViewInit {
   public signout() {
     this.gpgs.signout();
   }
+
+  public onmenu() {
+
+  }
 }

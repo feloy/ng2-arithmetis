@@ -1,18 +1,25 @@
+.topbar { 
+  display: flex;
+  width: 340px;
+  margin: 0 auto;
+}
+
 .signin {
-  width: 120px;
-  margin: 20px auto; 
+  width: 292px;
 }
 
 .signout {
-  width: 340px;
-  margin: 20px auto; 
-  text-align: center;
+  width: 292px;
   color: white;
 }
 
+.menu { width: 48px; }
+
+.menu > img { cursor: pointer; }
+
 .infos { 
   width: 340px;
-  margin: 20px auto 8px;  
+  margin: 0px auto 8px;  
   display: flex;
 }
 

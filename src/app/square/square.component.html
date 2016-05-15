@@ -1,2 +1,2 @@
 <div *ngIf="!tile" class="square empty" (click)="onclick()"></div>
-<div *ngIf="tile" class="square tiled type{{tile.type}} level{{game.level % 10}}" (click)="onclick()"><span [ngClass]="{selected: selected}">{{tile.face}}</span></div>
+<div *ngIf="tile" class="square tiled place{{place}} type{{tile.type}} level{{game.level % 10}}" (click)="onclick()"><span [ngClass]="{selected: selected}">{{tile.face}}</span></div>

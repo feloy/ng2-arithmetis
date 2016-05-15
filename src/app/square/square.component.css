@@ -8,11 +8,22 @@
   text-align: center;
   border-radius: 4px;
   border: 1px solid #ddd;
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;    
 }
 
 .empty {
   background-color: #eee;
+  cursor: pointer;
 }
+
+.square.place2 { 
+  cursor: pointer; 
+}
+
+.square.place1.tiled { cursor: not-allowed; }
 
 .tiled { 
   font-weight: normal; 
