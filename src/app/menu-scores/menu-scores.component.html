@@ -4,7 +4,7 @@
     <img width="32" src="{{logo}}">{{name}}
   </modal-header>
   <modal-content>
-    <ul>
+    <ul *ngIf="scores?.length">
       <li class="score" *ngFor="let score of scores">
         <div class="rank">{{score?.formattedScoreRank}}</div>
         <div class="avatar"></div>
@@ -14,6 +14,7 @@
         </div>
       </li>
     </ul>
+    <span *ngIf="selectedBoard && scores != null && !scores.length">No scores yet</span>
   </modal-content>
   <modal-footer></modal-footer>
 </modal>

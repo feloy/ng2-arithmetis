@@ -29,6 +29,9 @@ export class MenuScoresComponent implements OnInit {
       this.name = response.name;
       this.gpgs.getScoresForLevel(this.game.level, scores => {
         this.scores = scores.items;
+        if (this.scores == null) {
+          this.scores = [];
+        }
       });
     });
   }

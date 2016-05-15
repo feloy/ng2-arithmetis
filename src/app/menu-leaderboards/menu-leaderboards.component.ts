@@ -41,6 +41,9 @@ export class MenuLeaderboardsComponent implements OnInit {
       this.name = response.name;
       this.gpgs.getScores(board.id, scores => {
         this.scores = scores.items;
+        if (this.scores == null) {
+          this.scores = [];
+        }
       });
     });
 
