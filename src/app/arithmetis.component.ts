@@ -1,6 +1,6 @@
-import { Component, ViewEncapsulation, provide, AfterViewInit } from '@angular/core';
-
+import { Component, ViewEncapsulation, provide, AfterViewInit, ViewChild } from '@angular/core';
 import {I18nServiceConfig, I18nService, I18nDirective} from 'ng2-i18next/ng2-i18next';
+import { Modal } from 'ng2-modal';
 
 import { SquareComponent } from './square';
 import { ChronoComponent } from './chrono';
@@ -36,20 +36,24 @@ const I18N_PROVIDERS = [
   styleUrls: ['arithmetis.component.css'],
   providers: [I18N_PROVIDERS, GameService, DistributorService,
     CalculatorService, AudioService, ChronoService, GpgsService],
-  directives: [SquareComponent, I18nDirective, ChronoComponent, MenuComponent],
+  directives: [SquareComponent, I18nDirective, ChronoComponent, MenuComponent, Modal],
   encapsulation: ViewEncapsulation.None
 })
 export class ArithmetisAppComponent implements AfterViewInit {
+
+  @ViewChild('endDemoModal') endDemoModal;
 
   loop25 = new Array(25);
   loop5 = new Array(5);
 
   constructor(private game: GameService, private i18n: I18nService,
-    private audio: AudioService, private gpgs: GpgsService) {
+    private audio: AudioService, private gpgs: GpgsService,
+    private distributor: DistributorService) {
   }
 
   ngAfterViewInit() {
     this.gpgs.createSigninButton();
+    this.demo();
   }
 
   public getPlaceRack() {
@@ -60,6 +64,7 @@ export class ArithmetisAppComponent implements AfterViewInit {
   }
 
   public go() {
+    this.distributor.resetSources();
     this.game.restart();
   }
 
@@ -67,6 +72,10 @@ export class ArithmetisAppComponent implements AfterViewInit {
     this.gpgs.signout();
   }
 
-  public onmenu() {
+  public demo() {
+    this.game.goDemo(() => {
+      this.go();
+      this.endDemoModal.open();
+    });
   }
 }

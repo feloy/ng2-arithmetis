@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { ChronoService } from '../chrono.service';
 
@@ -8,18 +8,23 @@ import { ChronoService } from '../chrono.service';
   templateUrl: 'chrono.component.html',
   styleUrls: ['chrono.component.css']
 })
-export class ChronoComponent implements OnInit {
+export class ChronoComponent implements OnInit, OnDestroy {
 
   private t;
+  private interval;
 
   constructor(private chrono: ChronoService) { }
 
   ngOnInit() {
-    setInterval(() => { this.display(); }, 1000);
+    this.interval = setInterval(() => { this.display(); }, 1000);
     this.display();
   }
 
   private display() {
     this.t = this.chrono.get();
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.interval);
   }
 }

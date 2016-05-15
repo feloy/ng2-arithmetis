@@ -16,6 +16,7 @@ import { GpgsService } from '../gpgs.service';
 export class MenuComponent implements OnInit {
 
   @Output() restart = new EventEmitter<boolean>();
+  @Output() demo = new EventEmitter<boolean>();
 
   constructor(private gpgs: GpgsService) { }
   ngOnInit() {
@@ -23,5 +24,9 @@ export class MenuComponent implements OnInit {
 
   public go() {
     this.restart.emit(true);
+  }
+
+  public goDemo() {
+    this.demo.emit(true);
   }
 }

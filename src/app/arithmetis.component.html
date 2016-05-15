@@ -5,7 +5,7 @@
   <div class="signout" [hidden]="!gpgs.connected">
     <div class="name">{{gpgs.profile?.getName()}}</div><button (click)="signout()">sign out</button></div>
 
-  <div class="menu"><app-menu (restart)="go()"></app-menu></div>
+  <div class="menu"><app-menu (restart)="go()" (demo)="demo()"></app-menu></div>
 </div>
 
 <div class="infos">
@@ -28,3 +28,8 @@
   <app-square *ngFor="let none of loop5; let i=index" [place]="getPlaceRack()" [index]="i"></app-square>
 </div>
 
+<modal #endDemoModal title="Demo finished" cancelButtonLabel="close it" modalClass="modal-sm">
+    <modal-content>
+        It's up to you!
+    </modal-content>
+</modal>

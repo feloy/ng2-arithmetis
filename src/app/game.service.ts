@@ -34,6 +34,8 @@ export class GameService {
   public level: number;
 
   private beepDone = false;
+  private demoInterval = null;
+  private demoMoves: Array<number>;
 
   private changeSource = new Subject<SquareContent>();
   change$ = this.changeSource.asObservable();
@@ -49,6 +51,15 @@ export class GameService {
 
   /** restart a new game  */
   public restart() {
+    if (this.demoInterval != null) {
+      clearInterval(this.demoInterval);
+      this.demoInterval = null;
+    }
+    // NE PAS SUPPRIMER   console.log(this.demoMoves);
+    this.demoMoves = new Array();
+    this.selectedRack = null;
+    this.selectRackSource.next({ place: GameService.PLACE_RACK, index: null });
+
     this.changeLevel(1);
     for (let i = 0; i < this.grid.length; i++) {
       this.setGridCell(i, null);
@@ -133,6 +144,12 @@ export class GameService {
     if (this.grid[index] == null
       && (toClear = this.calculator.canAddTile(this.grid, newContent))) {
 
+      // Save the move for demo
+      this.demoMoves.push(this.selectedRack.position.index);
+      this.demoMoves.push(index % GameService.SIZE);
+      this.demoMoves.push(Math.floor(index / GameService.SIZE));
+      this.demoMoves.push(null);
+
       this.setGridCell(index, this.selectedRack.tile);
       this.setRackCell(
         this.selectedRack.position.index,
@@ -159,6 +176,7 @@ export class GameService {
         this.beepDone = true;
       }
     }
+
   }
 
   private clearLine(line: number) {
@@ -185,4 +203,97 @@ export class GameService {
     }
   }
 
+
+  public goDemo(callback) {
+    let clicRackAtPos = (i: number) => {
+      this.squareSelected(GameService.PLACE_RACK, i, this.rack[i]);
+    };
+    let clickGridAtPos = (i: number, x: number, y: number) => {
+      this.squareSelected(GameService.PLACE_GRID, x + GameService.SIZE * y, this.rack[i]);
+    };
+
+    let numbers = [0, 0, 0, 1, 0, 0, 1, 0, 2, 1, 2, 0, 0, 2, 2];
+    let operators = ['-', '-', '-', '+'];
+    this.distributor.setSources(numbers, operators);
+    this.restart();
+
+    var ops = [
+      /*
+        0, 0, 4, null, 
+        1, 1, 4, null, 
+        2, 2, 4, null, 
+        3, 3, 4, null, 
+        4, 4, 4, null,
+        */
+      () => { clicRackAtPos(0); },
+      () => { clickGridAtPos(0, 0, 4); },
+      () => { clicRackAtPos(1); },
+      () => { clickGridAtPos(1, 1, 4); },
+      () => { clicRackAtPos(2); },
+      () => { clickGridAtPos(2, 2, 4); },
+      () => { clicRackAtPos(3); },
+      () => { clickGridAtPos(3, 3, 4); },
+      () => { clicRackAtPos(4); },
+      () => { clickGridAtPos(4, 4, 4); },
+      /*
+      0, 0, 4, null, 
+      1, 1, 4, null, 
+      2, 2, 4, null, 
+      3, 3, 4, null, 
+      0, 4, 0, null, 
+      */
+      () => { clicRackAtPos(0); },
+      () => { clickGridAtPos(0, 0, 4); },
+      () => { clicRackAtPos(1); },
+      () => { clickGridAtPos(1, 1, 4); },
+      () => { clicRackAtPos(2); },
+      () => { clickGridAtPos(2, 2, 4); },
+      () => { clicRackAtPos(3); },
+      () => { clickGridAtPos(3, 3, 4); },
+      () => { clicRackAtPos(0); },
+      () => { clickGridAtPos(0, 4, 0); },
+      /*
+        1, 4, 1, null, 
+        2, 4, 2, null, 
+        3, 4, 3, null, 
+        2, 4, 4, null, 
+        0, 0, 4, null,
+        */
+      () => { clicRackAtPos(1); },
+      () => { clickGridAtPos(1, 4, 1); },
+      () => { clicRackAtPos(2); },
+      () => { clickGridAtPos(2, 4, 2); },
+      () => { clicRackAtPos(3); },
+      () => { clickGridAtPos(3, 4, 3); },
+      () => { clicRackAtPos(2); },
+      () => { clickGridAtPos(2, 4, 4); },
+      () => { clicRackAtPos(0); },
+      () => { clickGridAtPos(0, 0, 4); },
+      /*
+      4, 1, 4, null, 
+      3, 2, 4, null, 
+      2, 3, 4, null, 
+      4, 4, 4, null]
+      */
+      () => { clicRackAtPos(4); },
+      () => { clickGridAtPos(4, 1, 4); },
+      () => { clicRackAtPos(3); },
+      () => { clickGridAtPos(3, 2, 4); },
+      () => { clicRackAtPos(2); },
+      () => { clickGridAtPos(2, 3, 4); },
+      () => { clicRackAtPos(4); },
+      () => { clickGridAtPos(4, 4, 4); },
+
+
+    ];
+    var i = 0;
+    this.demoInterval = setInterval(() => {
+      ops[i++]();
+      if (i >= ops.length) {
+        clearInterval(this.demoInterval);
+        this.demoInterval = null;
+        setTimeout(() => callback(), 2000);
+      }
+    }, 1000);
+  }
 }

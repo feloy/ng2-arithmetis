@@ -3,6 +3,7 @@
   <modal-content>
     <ul>
       <li class="menuentry" (click)="menuModal.close(); go()"><span>Restart game</span></li>
+      <li class="menuentry" (click)="menuModal.close(); goDemo()"><span>Demo</span></li>
       <app-menu-scores *ngIf="gpgs.connected"></app-menu-scores>
       <app-menu-leaderboards *ngIf="gpgs.connected"></app-menu-leaderboards>
     </ul>
