@@ -5,7 +5,14 @@
   </modal-header>
   <modal-content>
     <ul style="overflow: auto">
-      <li class="score" *ngFor="let score of scores">{{score?.formattedScoreRank}}</li>
+      <li class="score" *ngFor="let score of scores">
+        <div class="rank">{{score?.formattedScoreRank}}</div>
+        <div class="avatar"></div>
+        <div class="info">
+          <div class="name">{{score?.player?.displayName}}</div>
+          <div class="score">{{score?.formattedScore}}</div>
+        </div>
+      </li>
     </ul>
   </modal-content>
   <modal-footer>more...</modal-footer>
