@@ -12,6 +12,7 @@ import { CalculatorService } from './calculator.service';
 import { AudioService } from './audio.service';
 import { ChronoService } from './chrono.service';
 import { GpgsService } from './gpgs.service';
+import { PreferencesService } from './preferences.service';
 
 declare var i18nextBrowserLanguageDetector: any;
 declare var i18nextXHRBackend: any;
@@ -35,7 +36,8 @@ const I18N_PROVIDERS = [
   templateUrl: 'arithmetis.component.html',
   styleUrls: ['arithmetis.component.css'],
   providers: [I18N_PROVIDERS, GameService, DistributorService,
-    CalculatorService, AudioService, ChronoService, GpgsService],
+    CalculatorService, AudioService, ChronoService, GpgsService,
+    PreferencesService],
   directives: [SquareComponent, I18nDirective, ChronoComponent, MenuComponent, Modal],
   encapsulation: ViewEncapsulation.None
 })
@@ -48,12 +50,14 @@ export class ArithmetisAppComponent implements AfterViewInit {
 
   constructor(private game: GameService, private i18n: I18nService,
     private audio: AudioService, private gpgs: GpgsService,
-    private distributor: DistributorService) {
+    private distributor: DistributorService, private prefs: PreferencesService) {
   }
 
   ngAfterViewInit() {
     this.gpgs.createSigninButton();
-    setTimeout(() => { this.demo(); }, 1000);
+    if (this.prefs.getPlayDemo()) {
+      setTimeout(() => { this.demo(); }, 1000);
+    }
   }
 
   public getPlaceRack() {
@@ -73,6 +77,7 @@ export class ArithmetisAppComponent implements AfterViewInit {
   }
 
   public demo() {
+    this.prefs.setPlayDemo(false);
     this.game.goDemo(() => {
       this.go();
       this.endDemoModal.open();
