@@ -129,16 +129,36 @@ export class CalculatorService {
     if (parts.length != 2) {
       return false;
     }
-    if (math.eval(parts[0]) == math.eval(parts[1])) {
-      return true;
+    try {
+      if (this.my_eval(parts[0]) == this.my_eval(parts[1])) {
+        console.log(parts[0] + ' = ' + parts[1]);
+        console.log(this.my_eval(parts[0]) + ' = ' + this.my_eval(parts[1]));
+        return true;
+      }
+    } catch (err) {
+      return false;
     }
     // Try reversing the operation
     str = str.split('').reverse().join('');
     parts = str.split('=');
-    if (math.eval(parts[0]) == math.eval(parts[1])) {
-      return true;
+    try {
+      if (this.my_eval(parts[0]) == this.my_eval(parts[1])) {
+        console.log(parts[0] + ' = ' + parts[1]);
+        console.log(this.my_eval(parts[0]) + ' = ' + this.my_eval(parts[1]));
+        return true;
+      }
+    } catch (err) {
+      return false;
     }
     return false;
   }
 
+  private patt = new RegExp('^[0-9]+$');
+  private my_eval(str: string): number {
+    if (this.patt.test(str)) {
+      return parseInt(str, 10);
+    } else {
+      return eval(str.replace(/[^0-9+-]/g, ''));
+    }
+  }
 }

@@ -24,7 +24,6 @@ module.exports = function (config) {
       { pattern: 'dist/vendor/i18next/i18next.min.js', included: true, watched: true },
       { pattern: 'dist/vendor/i18next-xhr-backend/i18nextXHRBackend.min.js', included: true, watched: true },
       { pattern: 'dist/vendor/i18next-browser-languagedetector/i18nextBrowserLanguageDetector.min.js', included: true, watched: true },
-      { pattern: 'dist/vendor/mathjs/dist/math.min.js', included: true, watched: true },
 
       { pattern: 'config/karma-test-shim.js', included: true, watched: true },
 

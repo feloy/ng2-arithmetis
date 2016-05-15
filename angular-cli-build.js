@@ -12,7 +12,6 @@ module.exports = function(defaults) {
       'reflect-metadata/*.js',
       'rxjs/**/*.js',
       '@angular/**/*.js',
-      'mathjs/dist/math.min.js',
       'i18next/i18next.min.js',
       'i18next-xhr-backend/i18nextXHRBackend.min.js',
       'i18next-browser-languagedetector/i18nextBrowserLanguageDetector.min.js',
