@@ -53,7 +53,7 @@ export class ArithmetisAppComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.gpgs.createSigninButton();
-    this.demo();
+    setTimeout(() => { this.demo(); }, 1000);
   }
 
   public getPlaceRack() {
