@@ -17,7 +17,7 @@ export class MenuLeaderboardsComponent implements OnInit {
   public boards = null;
   public selectedBoard;
 
-  public logo: string = '/assets/icons8/Synchronize-32.png';
+  public logo: string;
   public name: string;
   public scores: Array<any> = new Array(25);
 

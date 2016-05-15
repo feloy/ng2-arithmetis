@@ -1,4 +1,3 @@
-img.menu { cursor: pointer; }
 ul {
   padding: 0;  
 }
@@ -20,4 +19,10 @@ ul {
 
 >>> li.menuentry:hover {
   color: #444;
+}
+
+.menuicon { 
+  font-size: 36px; 
+  color: white; 
+  cursor: pointer; 
 }

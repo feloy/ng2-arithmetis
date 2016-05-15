@@ -14,7 +14,7 @@ import { GpgsService } from '../gpgs.service';
 })
 export class MenuScoresComponent implements OnInit {
 
-  public logo: string = '/assets/icons8/Synchronize-32.png';
+  public logo: string;
   public name: string;
   public scores: Array<any> = new Array(25);
 

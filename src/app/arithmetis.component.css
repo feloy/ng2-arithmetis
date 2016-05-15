@@ -9,17 +9,19 @@
 
 .signin {
   width: 292px;
+  padding-left: 8px;
 }
 
 @media screen and (max-width: 359px) {
-  .signin { width: 252px; }
+  .signin { width: 252px;   padding-left: 4px; }
 }
 
 .signout {
   width: 292px;
+  padding-left: 8px;
 }
 @media screen and (max-width: 359px) {
-  .signout { width: 252px; }
+  .signout { width: 252px; padding-left: 4px; }
 }
 
 .signout > .name {

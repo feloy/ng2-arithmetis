@@ -83,7 +83,7 @@ export class DistributorService {
   public dumpSent() {
     let numbers: Array<string> = this.sentNumbers.map(tile => tile.face);
     let operators: Array<string> = this.sentOperators.map(tile => tile.face);
-    console.log('numbers: ' + numbers);
-    console.log('operators: ' + operators);
+    console.log('numbers: ' + numbers); // NE PAS SUPPRIMER
+    console.log('operators: ' + operators); // NE PAS SUPPRIMER
   }
 }

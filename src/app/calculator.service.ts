@@ -131,8 +131,6 @@ export class CalculatorService {
     }
     try {
       if (this.my_eval(parts[0]) == this.my_eval(parts[1])) {
-        console.log(parts[0] + ' = ' + parts[1]);
-        console.log(this.my_eval(parts[0]) + ' = ' + this.my_eval(parts[1]));
         return true;
       }
     } catch (err) {
@@ -143,8 +141,6 @@ export class CalculatorService {
     parts = str.split('=');
     try {
       if (this.my_eval(parts[0]) == this.my_eval(parts[1])) {
-        console.log(parts[0] + ' = ' + parts[1]);
-        console.log(this.my_eval(parts[0]) + ' = ' + this.my_eval(parts[1]));
         return true;
       }
     } catch (err) {
