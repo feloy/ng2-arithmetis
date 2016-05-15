@@ -2,9 +2,10 @@
   <div class="signin" [hidden]="gpgs.connected">
     <div id="google-login-button"></div>
   </div>
-  <div class="signout" [hidden]="!gpgs.connected">{{gpgs.profile?.getName()}}<br><button (click)="signout()">sign out</button></div>
+  <div class="signout" [hidden]="!gpgs.connected">
+    <div class="name">{{gpgs.profile?.getName()}}</div><button (click)="signout()">sign out</button></div>
 
-  <div class="menu"><img src="assets/icons8/Menu.png" (click)="onmenu()"></div>
+  <div class="menu"><app-menu></app-menu></div>
 </div>
 
 <div class="infos">
@@ -26,3 +27,4 @@
 <div class="rack">
   <app-square *ngFor="let none of loop5; let i=index" [place]="getPlaceRack()" [index]="i"></app-square>
 </div>
+

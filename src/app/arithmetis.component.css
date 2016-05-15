@@ -1,7 +1,7 @@
 .topbar { 
   display: flex;
   width: 340px;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 
 .signin {
@@ -10,12 +10,13 @@
 
 .signout {
   width: 292px;
+}
+
+.signout > .name {
   color: white;
 }
 
 .menu { width: 48px; }
-
-.menu > img { cursor: pointer; }
 
 .infos { 
   width: 340px;
@@ -83,7 +84,7 @@
 
 .rack {
   width: 340px;
-  height: 68px;
+  height: 76px;
   margin: 20px auto;
   display: flex;
   padding: 5px;

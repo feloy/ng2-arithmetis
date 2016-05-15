@@ -16,7 +16,8 @@ module.exports = function(defaults) {
       'i18next/i18next.min.js',
       'i18next-xhr-backend/i18nextXHRBackend.min.js',
       'i18next-browser-languagedetector/i18nextBrowserLanguageDetector.min.js',
-      'ng2-i18next/**/*.js'
+      'ng2-i18next/**/*.js',
+      'ng2-modal/index.js'
     ]
   });
 };

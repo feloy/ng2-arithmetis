@@ -4,6 +4,7 @@ import {I18nServiceConfig, I18nService, I18nDirective} from 'ng2-i18next/ng2-i18
 
 import { SquareComponent } from './square';
 import { ChronoComponent } from './chrono';
+import { MenuComponent } from './menu';
 
 import { GameService } from './game.service';
 import { DistributorService } from './distributor.service';
@@ -35,7 +36,7 @@ const I18N_PROVIDERS = [
   styleUrls: ['arithmetis.component.css'],
   providers: [I18N_PROVIDERS, GameService, DistributorService,
     CalculatorService, AudioService, ChronoService, GpgsService],
-  directives: [SquareComponent, I18nDirective, ChronoComponent],
+  directives: [SquareComponent, I18nDirective, ChronoComponent, MenuComponent],
   encapsulation: ViewEncapsulation.None
 })
 export class ArithmetisAppComponent implements AfterViewInit {
@@ -67,6 +68,5 @@ export class ArithmetisAppComponent implements AfterViewInit {
   }
 
   public onmenu() {
-
   }
 }
