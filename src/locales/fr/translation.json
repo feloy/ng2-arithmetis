@@ -3,5 +3,12 @@
   "level_n": "Niveau {{d}}",
   "n_lines_left": "{{count}} ligne restante",
   "n_lines_left_plural": "{{count}} lignes restantes",
-  "your_best": "votre record : "
+  "your_best": "votre record : ",
+  "signout": "déconnexion",
+  "restart_game": "Recommencer une partie",
+  "demo": "Démo",
+  "view_leaderboards": "Meilleurs scores",
+  "leaderboards": "Meilleurs scores",
+  "level_scores": "Scores du niveau",
+  "no_scores_yet": "Aucun score pour l'instant"
 }

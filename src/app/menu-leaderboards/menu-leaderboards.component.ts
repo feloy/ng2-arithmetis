@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Modal } from 'ng2-modal';
+import { I18nDirective, I18nService } from 'ng2-i18next/ng2-i18next';
 
 import { GameService } from '../game.service';
 import { GpgsService } from '../gpgs.service';
@@ -10,7 +10,7 @@ import { GpgsService } from '../gpgs.service';
   selector: 'app-menu-leaderboards',
   templateUrl: 'menu-leaderboards.component.html',
   styleUrls: ['menu-leaderboards.component.css'],
-  directives: [Modal]
+  directives: [Modal, I18nDirective]
 })
 export class MenuLeaderboardsComponent implements OnInit {
 
@@ -21,7 +21,8 @@ export class MenuLeaderboardsComponent implements OnInit {
   public name: string;
   public scores: Array<any> = new Array(25);
 
-  constructor(private game: GameService, private gpgs: GpgsService) { }
+  constructor(private game: GameService, private gpgs: GpgsService,
+    private i18n: I18nService) { }
 
   ngOnInit() {
   }

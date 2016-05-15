@@ -1,7 +1,7 @@
-<li *ngIf="game.level > 0" class="menuentry" (click)="scoresModal.open(); open();"><span>View level best scores</span>
+<li *ngIf="game.level > 0" class="menuentry" (click)="scoresModal.open(); open();"><span i18n="level_scores"></span>
 <modal #scoresModal [hideCloseButton]="false" [closeOnEscape]="false" [closeOnOutsideClick]="false" modalClass="modal-sm">
   <modal-header>
-    <img width="32" src="{{logo}}">{{name}}
+    <img width="32" src="{{logo}}"><span class="title">{{name}}</span>
   </modal-header>
   <modal-content>
     <ul *ngIf="scores?.length">
@@ -14,7 +14,7 @@
         </div>
       </li>
     </ul>
-    <span *ngIf="selectedBoard && scores != null && !scores.length">No scores yet</span>
+    <div class="no-score" *ngIf="selectedBoard && scores != null && !scores.length" i18n="no_scores_yet"></div>
   </modal-content>
   <modal-footer></modal-footer>
 </modal>

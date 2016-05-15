@@ -4,7 +4,7 @@
       <div id="google-login-button"></div>
     </div>
     <div class="signout" [hidden]="!gpgs.connected">
-      <div class="name">{{gpgs.profile?.getName()}}</div><button (click)="signout()">sign out</button></div>
+      <div class="name">{{gpgs.profile?.getName()}}</div><button (click)="signout()" i18n="signout"></button></div>
 
     <div class="menu">
       <app-menu (restart)="go()" (demo)="demo()"></app-menu>

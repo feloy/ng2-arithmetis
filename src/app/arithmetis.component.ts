@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, provide, AfterViewInit, ViewChild } from '@angular/core';
-import {I18nServiceConfig, I18nService, I18nDirective} from 'ng2-i18next/ng2-i18next';
+import { I18nServiceConfig, I18nService, I18nDirective } from 'ng2-i18next/ng2-i18next';
 import { Modal } from 'ng2-modal';
 
 import { SquareComponent } from './square';

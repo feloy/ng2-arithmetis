@@ -3,5 +3,12 @@
   "level_n": "Level {{d}}",
   "n_lines_left": "{{count}} line left",
   "n_lines_left_plural": "{{count}} lines left",
-  "your_best": "your best: "
+  "your_best": "your best: ",
+  "signout": "sign out",
+  "restart_game": "Restart game",
+  "demo": "Demo",
+  "view_leaderboards": "View leaderboards",
+  "leaderboards": "Leaderboards",
+  "level_scores": "Level best scores",
+  "no_scores_yet": "No scores yet"
 }

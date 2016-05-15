@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Modal } from 'ng2-modal';
+import { I18nDirective } from 'ng2-i18next/ng2-i18next';
 
 import {MenuScoresComponent } from '../menu-scores';
 import {MenuLeaderboardsComponent } from '../menu-leaderboards';
@@ -11,7 +12,7 @@ import { GpgsService } from '../gpgs.service';
   selector: 'app-menu',
   templateUrl: 'menu.component.html',
   styleUrls: ['menu.component.css'],
-  directives: [Modal, MenuScoresComponent, MenuLeaderboardsComponent]
+  directives: [Modal, MenuScoresComponent, MenuLeaderboardsComponent, I18nDirective]
 })
 export class MenuComponent implements OnInit {
 

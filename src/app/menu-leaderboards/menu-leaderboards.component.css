@@ -52,3 +52,5 @@ li.score > .info > .score {
   font-weight: bold;
   color: #777;
 }
+
+.no-scores { width: 100%; text-align: center; font-style: italic; }

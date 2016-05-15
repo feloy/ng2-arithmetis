@@ -2,8 +2,8 @@
 <modal #menuModal title="Arithmetis" [hideCloseButton]="false" [closeOnEscape]="false" [closeOnOutsideClick]="false" modalClass="modal-sm">
   <modal-content>
     <ul>
-      <li class="menuentry" (click)="menuModal.close(); go()"><span>Restart game</span></li>
-      <li class="menuentry" (click)="menuModal.close(); goDemo()"><span>Demo</span></li>
+      <li class="menuentry" (click)="menuModal.close(); go()"><span i18n="restart_game"></span></li>
+      <li class="menuentry" (click)="menuModal.close(); goDemo()"><span i18n="demo"></span></li>
       <app-menu-scores *ngIf="gpgs.connected"></app-menu-scores>
       <app-menu-leaderboards *ngIf="gpgs.connected"></app-menu-leaderboards>
     </ul>

@@ -1,5 +1,5 @@
-<li class="menuentry" (click)="leaderboardsModal.open(); open();"><span>View leaderboards</span>
-  <modal #leaderboardsModal title="Leaderboards" [hideCloseButton]="false" [closeOnEscape]="false" [closeOnOutsideClick]="false"
+<li class="menuentry" (click)="leaderboardsModal.open(); open();"><span i18n="view_leaderboards"></span>
+  <modal #leaderboardsModal title="{{i18n.t('leaderboards')}}" [hideCloseButton]="false" [closeOnEscape]="false" [closeOnOutsideClick]="false"
     modalClass="modal-sm">
     <modal-content>
       <ul *ngIf="boards!=null && selectedBoard == null">
@@ -18,7 +18,7 @@
           </div>
         </li>
       </ul>
-      <span *ngIf="selectedBoard && scores != null && !scores.length">No scores yet</span>
+      <div class="no-scores" *ngIf="selectedBoard && scores != null && !scores.length" i18n="no_scores_yet"></div>
     </modal-content>
     <modal-footer></modal-footer>
   </modal>
