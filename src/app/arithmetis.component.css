@@ -3,13 +3,23 @@
   width: 340px;
   margin: 10px auto;
 }
+@media screen and (max-width: 359px) {
+  .topbar { width: 260px; }
+}
 
 .signin {
   width: 292px;
 }
 
+@media screen and (max-width: 359px) {
+  .signin { width: 252px; }
+}
+
 .signout {
   width: 292px;
+}
+@media screen and (max-width: 359px) {
+  .signout { width: 252px; }
 }
 
 .signout > .name {
@@ -23,11 +33,17 @@
   margin: 0px auto 8px;  
   display: flex;
 }
+@media screen and (max-width: 359px) {
+  .infos { width: 260px; }
+}
 
 .infos > .scores {
   width: 136px;
   text-align: center;
   color: white;
+}
+@media screen and (max-width: 359px) {
+  .infos > .scores { width: 116px; }
 }
 
 .infos > .scores > .level {
@@ -41,6 +57,9 @@
   color: white;
   font-size: 14px;
   font-weight: normal;
+}
+@media screen and (max-width: 359px) {
+  .infos > .scores > .lines-left { width: 116px; font-size: 12px; }
 }
 
 .infos > .gobtn {
@@ -61,6 +80,9 @@
   font-size: 20px;
   font-weight: bold;
 }
+@media screen and (max-width: 359px) {
+  .chrono { width: 116px; }
+}
 
 .my-best {
   width: 136px;
@@ -68,6 +90,9 @@
   color: white;
   font-size: 14px;
   font-weight: normal;
+}
+@media screen and (max-width: 359px) {
+  .my-best { width: 116px; font-size: 12px; }
 }
 
 .grid {
@@ -82,6 +107,10 @@
   font-family: 'Roboto Mono';
 }
 
+@media screen and (max-width: 359px) {
+  .grid { width: 260px; height: 260px; }
+}
+
 .rack {
   width: 340px;
   height: 76px;
@@ -91,6 +120,10 @@
   background-color: white;
   border-radius: 8px;
   font-family: 'Roboto Mono';
+}
+
+@media screen and (max-width: 359px) {
+  .rack { width: 260px; height: 60px; }
 }
 
 body { 

@@ -14,6 +14,10 @@
   user-select: none;    
 }
 
+@media screen and (max-width: 359px) {
+  .square { width: 48px; height: 48px; line-height: 48px; font-size: 28px;  }
+}
+
 .empty {
   background-color: #eee;
   cursor: pointer;
@@ -35,6 +39,10 @@
 .tiled .selected { 
   font-weight: bold;
   font-size: 40px;
+}
+
+@media screen and (max-width: 359px) {
+  .tiled .selected { font-size: 36px; }
 }
 
 .tiled.type1.level1 {
