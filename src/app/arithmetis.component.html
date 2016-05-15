@@ -31,9 +31,9 @@
     <app-square *ngFor="let none of loop5; let i=index" [place]="getPlaceRack()" [index]="i"></app-square>
   </div>
 
-  <modal #endDemoModal title="Demo finished" cancelButtonLabel="close it" modalClass="modal-sm">
+  <modal #endDemoModal title="{{i18n.t('demo_finished')}}" cancelButtonLabel="close it" modalClass="modal-sm">
     <modal-content>
-      It's up to you!
+      <div class="itsup" i18n="its_up_to_you"></div>
     </modal-content>
   </modal>
 </div>
