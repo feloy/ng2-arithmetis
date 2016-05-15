@@ -12,5 +12,9 @@
   "level_scores": "Level best scores",
   "no_scores_yet": "No scores yet",
   "demo_finished": "Demo finished",
-  "its_up_to_you": "It's up to you!"
+  "its_up_to_you": "It's up to you!",
+  "about": "About",
+  "about_text": "Arithmetis web version has been written with Angular2 during the « Angular Attack » Hackathon in May 2016.",
+  "about_the_team": "The Team",
+  "philippe_martin": "Philippe MARTIN, France"
 }

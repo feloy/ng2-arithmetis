@@ -1,0 +1,10 @@
+<li class="menuentry" (click)="aboutModal.open();"><span i18n="about"></span>
+  <modal #aboutModal title="{{i18n.t('about')}}" [hideCloseButton]="false" [closeOnEscape]="false" [closeOnOutsideClick]="false"
+    modalClass="modal-sm">
+    <modal-content>
+      <div class="abouttext" i18n="about_text"></div>
+      <div class="abouttitle" i18n="about_the_team"></div>
+      <div class="abouttext" i18n="philippe_martin"></div>
+    </modal-content>
+  </modal>
+</li>

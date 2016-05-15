@@ -44,6 +44,7 @@ const barrels: string[] = [
   'app/menu',
   'app/menu-scores',
   'app/menu-leaderboards',
+  'app/menu-about',
   /** @cli-barrel */
 ];
 

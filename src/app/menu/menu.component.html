@@ -6,6 +6,7 @@
       <li class="menuentry" (click)="menuModal.close(); goDemo()"><span i18n="demo"></span></li>
       <app-menu-scores *ngIf="gpgs.connected"></app-menu-scores>
       <app-menu-leaderboards *ngIf="gpgs.connected"></app-menu-leaderboards>
+      <app-menu-about></app-menu-about>
     </ul>
   </modal-content>
   <modal-footer>&nbsp;</modal-footer>
