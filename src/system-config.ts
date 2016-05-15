@@ -4,6 +4,7 @@
 /** Map relative paths to URLs. */
 const map: any = {
   'ng2-i18next': 'vendor/ng2-i18next',
+  'ng2-modal': 'node_modules/ng2-modal'
 };
 
 /** User packages configuration. */
@@ -12,7 +13,10 @@ const packages: any = {
     format: 'cjs',
     defaultExtension: 'js'
   },
-
+  'ng2-modal': {
+    main: 'index.js',
+    defaultExtension: 'js'
+  }
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////

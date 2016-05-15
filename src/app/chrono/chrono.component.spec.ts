@@ -10,11 +10,12 @@ import { ComponentFixture, TestComponentBuilder } from '@angular/compiler/testin
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ChronoComponent } from './chrono.component';
+import { ChronoService } from '../chrono.service';
 
 describe('Component: Chrono', () => {
   let builder: TestComponentBuilder;
 
-  beforeEachProviders(() => [ChronoComponent]);
+  beforeEachProviders(() => [ChronoComponent, ChronoService]);
   beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
     builder = tcb;
   }));
