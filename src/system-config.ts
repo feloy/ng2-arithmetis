@@ -42,6 +42,7 @@ const barrels: string[] = [
   'app/square',
   'app/chrono',
   'app/menu',
+  'app/menu-scores',
   /** @cli-barrel */
 ];
 

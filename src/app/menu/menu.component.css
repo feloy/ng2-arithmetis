@@ -1,1 +1,16 @@
 img.menu { cursor: pointer; }
+ul {
+  padding: 0;  
+}
+
+>>> li { 
+  list-style-type: none;
+  font-size: 21px; 
+  text-align: center;
+  cursor: pointer;
+  color: #777;
+}
+
+>>> li:hover {
+  color: #444;
+}
