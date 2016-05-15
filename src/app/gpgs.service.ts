@@ -125,7 +125,7 @@ export class GpgsService {
       var request = gapi.client.games.scores.list(
         {
           collection: 'PUBLIC',
-          leaderboardId: 'CgkIg-L2stUXEAIQCA', // TODO GpgsService.levels[level - 1],
+          leaderboardId: GpgsService.levels[level - 1],
           timeSpan: 'ALL_TIME',
           maxResults: 25,
           language: this.getI18nFirstLanguage()
@@ -136,6 +136,20 @@ export class GpgsService {
       });
     });
   }
+  /*
+    public loadUserProfile (id: string, callback: (any) => void) {
+      gapi.client.load('games', 'v1', (response1) => {
+        var request = gapi.client.games.players.get(
+          {
+            playerId: id,
+            language: this.getI18nFirstLanguage()
+          }
+        );
+        request.execute(function (response) {
+          callback(response);
+        });
+      });
+    }*/
 
   // not here
   private getI18nFirstLanguage() {
