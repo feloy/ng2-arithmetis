@@ -15,10 +15,12 @@ import { CalculatorService } from './calculator.service';
 import { AudioService } from './audio.service';
 import { ChronoService } from './chrono.service';
 import { GpgsService } from './gpgs.service';
+import { PreferencesService } from './preferences.service';
 
 beforeEachProviders(() => [ArithmetisAppComponent, GameService,
   DistributorService, CalculatorService, AudioService,
-  ChronoService, GpgsService, I18nService, I18nServiceConfig]);
+  ChronoService, GpgsService, I18nService, I18nServiceConfig,
+  PreferencesService]);
 
 describe('App: Arithmetis', () => {
   it('should create the app',
