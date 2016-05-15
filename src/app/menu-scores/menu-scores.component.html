@@ -1,4 +1,4 @@
-<li class="menuentry" (click)="scoresModal.open(); open();">View best scores</li>
+<li class="menuentry" (click)="scoresModal.open(); open();"><span>View best scores</span>
 <modal #scoresModal [hideCloseButton]="false" [closeOnEscape]="false" [closeOnOutsideClick]="false" modalClass="modal-sm">
   <modal-header>
     <img width="32" src="{{logo}}">{{name}}
@@ -17,3 +17,4 @@
   </modal-content>
   <modal-footer></modal-footer>
 </modal>
+</li>
