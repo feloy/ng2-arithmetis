@@ -8,6 +8,7 @@ declare var math: any;
 export interface Clearable {
   direction: number;
   offset: number;
+  center: number;
 }
 
 @Injectable()
@@ -50,7 +51,7 @@ export class CalculatorService {
         grid[newOne.position.index] = null;
         return null;
       } else {
-        toClear.push({ direction: CalculatorService.DIR_HORIZONTAL, offset: line });
+        toClear.push({ direction: CalculatorService.DIR_HORIZONTAL, offset: line, center: col });
       }
     }
     if (colDone) {
@@ -59,7 +60,7 @@ export class CalculatorService {
         grid[newOne.position.index] = null;
         return null;
       } else {
-        toClear.push({ direction: CalculatorService.DIR_VERTICAL, offset: col });
+        toClear.push({ direction: CalculatorService.DIR_VERTICAL, offset: col, center: line });
       }
     }
     if (antislashDone) {
@@ -68,7 +69,7 @@ export class CalculatorService {
         grid[newOne.position.index] = null;
         return null;
       } else {
-        toClear.push({ direction: CalculatorService.DIR_ANTISLASH, offset: 0 });
+        toClear.push({ direction: CalculatorService.DIR_ANTISLASH, offset: 0, center: line });
       }
     }
     if (slashDone) {
@@ -77,7 +78,7 @@ export class CalculatorService {
         grid[newOne.position.index] = null;
         return null;
       } else {
-        toClear.push({ direction: CalculatorService.DIR_SLASH, offset: 0 });
+        toClear.push({ direction: CalculatorService.DIR_SLASH, offset: 0, center: line });
       }
     }
 

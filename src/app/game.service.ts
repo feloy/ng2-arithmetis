@@ -161,45 +161,56 @@ export class GameService {
       for (let i = 0; i < toClear.length; i++) {
         let clearable: Clearable = toClear[i];
         switch (clearable.direction) {
-          case CalculatorService.DIR_HORIZONTAL: this.clearLine(clearable.offset); break;
-          case CalculatorService.DIR_VERTICAL: this.clearCol(clearable.offset); break;
-          case CalculatorService.DIR_ANTISLASH: this.clearAntislash(); break;
-          case CalculatorService.DIR_SLASH: this.clearSlash(); break;
+          case CalculatorService.DIR_HORIZONTAL: this.clearLine(clearable.offset, clearable.center); break;
+          case CalculatorService.DIR_VERTICAL: this.clearCol(clearable.offset, clearable.center); break;
+          case CalculatorService.DIR_ANTISLASH: this.clearAntislash(clearable.center); break;
+          case CalculatorService.DIR_SLASH: this.clearSlash(clearable.center); break;
         }
       }
       this.linesLeft = Math.max(0, this.linesLeft - toClear.length);
-      if (this.linesLeft == 0 && this.calculator.gridIsEmpty(this.grid)) {
-        this.changeLevel(this.level + 1);
-        this.beepDone = false;
-      } else if (this.linesLeft == 0 && !this.beepDone) {
-        this.audio.playBeep();
-        this.beepDone = true;
-      }
+      setTimeout(() => {
+        if (this.linesLeft == 0 && this.calculator.gridIsEmpty(this.grid)) {
+          this.changeLevel(this.level + 1);
+          this.beepDone = false;
+        } else if (this.linesLeft == 0 && !this.beepDone) {
+          this.audio.playBeep();
+          this.beepDone = true;
+        }
+      }, 1000);
     }
 
   }
 
-  private clearLine(line: number) {
+  private clearLine(line: number, center: number) {
+    console.log('line ' + line + ' center ' + center);
     for (let i = 0; i < GameService.SIZE; i++) {
-      this.setGridCell(i + GameService.SIZE * line, null);
+      setTimeout(() => {
+        this.setGridCell(i + GameService.SIZE * line, null);
+      }, 100 + 100 * (Math.abs(i - center)));
     }
   }
 
-  private clearCol(col: number) {
+  private clearCol(col: number, center: number) {
     for (let i = 0; i < GameService.SIZE; i++) {
-      this.setGridCell(col + GameService.SIZE * i, null);
+      setTimeout(() => {
+        this.setGridCell(col + GameService.SIZE * i, null);
+      }, 100 + 100 * (Math.abs(i - center)));
     }
   }
 
-  private clearAntislash() {
+  private clearAntislash(center: number) {
     for (let i = 0; i < GameService.SIZE; i++) {
-      this.setGridCell(i + GameService.SIZE * i, null);
+      setTimeout(() => {
+        this.setGridCell(i + GameService.SIZE * i, null);
+      }, 100 + 100 * (Math.abs(i - center)));
     }
   }
 
-  private clearSlash() {
+  private clearSlash(center: number) {
     for (let i = 0; i < GameService.SIZE; i++) {
-      this.setGridCell(i + GameService.SIZE * (GameService.SIZE - 1 - i), null);
+      setTimeout(() => {
+        this.setGridCell(i + GameService.SIZE * (GameService.SIZE - 1 - i), null);
+      }, 100 + 100 * (Math.abs(i - center)));
     }
   }
 
