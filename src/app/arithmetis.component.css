@@ -13,7 +13,7 @@
 }
 
 .signin {
-  width: 292px;
+  width: 300px;
   padding-left: 8px;
   height: 50px;
 }
@@ -23,7 +23,7 @@
 }
 
 .signout {
-  width: 292px;
+  width: 300px;
   height: 50px;
   padding-left: 8px;
 }
@@ -35,7 +35,7 @@
   color: white;
 }
 
-.menu { width: 48px; }
+.menu { width: 36px; }
 
 .infos { 
   width: 100%;

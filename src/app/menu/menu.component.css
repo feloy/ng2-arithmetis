@@ -25,6 +25,7 @@ ul {
   font-size: 36px; 
   color: white; 
   cursor: pointer; 
+  line-height: 48px;
 }
 
 .menuicon:hover { color: #eee; }
