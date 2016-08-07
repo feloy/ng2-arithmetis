@@ -4,6 +4,9 @@
 /** Map relative paths to URLs. */
 const map: any = {
   'ng2-i18next': 'vendor/ng2-i18next',
+  'i18next': 'vendor/i18next/i18next.min.js',
+  'i18nextXHRBackend': 'vendor/i18next-xhr-backend/i18nextXHRBackend.min.js',
+  'i18nextBrowserLanguageDetector': 'vendor/i18next-browser-languagedetector/i18nextBrowserLanguageDetector.min.js',
   'ng2-modal': 'vendor/ng2-modal'
 };
 
@@ -13,6 +16,9 @@ const packages: any = {
     format: 'cjs',
     defaultExtension: 'js'
   },
+  'i18next': { format: 'global' },
+  'i18nextXHRBackend': { format: 'global' },
+  'i18nextBrowserLanguageDetector': { format: 'global' },
   'ng2-modal': {
     main: 'index.js',
     defaultExtension: 'js'

@@ -14,6 +14,10 @@ import { ChronoService } from './chrono.service';
 import { GpgsService } from './gpgs.service';
 import { PreferencesService } from './preferences.service';
 
+import 'i18next';
+import 'i18nextBrowserLanguageDetector';
+import 'i18nextXHRBackend';
+
 declare var i18nextBrowserLanguageDetector: any;
 declare var i18nextXHRBackend: any;
 
