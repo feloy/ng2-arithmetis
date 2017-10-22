@@ -1,3 +1,7 @@
+# Play
+
+http://play.arithmetis.com/
+
 # The Game
 
 The principle of the game is that 5 tiles are available in a rack. 3 numbers, an operator and and equal sign, ie 0 + 0 = 0
